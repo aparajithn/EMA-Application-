@@ -3,7 +3,8 @@ import { NativeScriptRouterModule } from "nativescript-angular/router";
 import { Routes } from "@angular/router";
 
 const routes: Routes = [
-    //{ path: "", redirectTo: "/items", pathMatch: "full" }
+    { path: "", redirectTo: "/sign-in", pathMatch: "full" },
+    { path: "sign-in", loadChildren: "~/app/pages/sign-in/sign-in.module#SignInModule"}
 ];
 
 @NgModule({

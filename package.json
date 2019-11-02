@@ -1,11 +1,11 @@
 {
     "nativescript": {
         "id": "org.nativescript.EMAmobile",
-        "tns-android": {
-            "version": "6.0.0"
-        },
         "tns-ios": {
-            "version": "6.0.1"
+            "version": "6.1.0"
+        },
+        "tns-android": {
+            "version": "6.1.2"
         }
     },
     "description": "NativeScript Application",
@@ -25,12 +25,12 @@
         "nativescript-theme-core": "~1.0.4",
         "reflect-metadata": "~0.1.8",
         "rxjs": "~6.3.0",
-        "tns-core-modules": "6.0.1",
+        "tns-core-modules": "~6.1.0",
         "zone.js": "0.9.1"
     },
     "devDependencies": {
         "@nativescript/schematics": "~0.4.0",
-        "nativescript-dev-webpack": "1.0.1",
+        "nativescript-dev-webpack": "~1.2.0",
         "@angular/compiler-cli": "8.0.0",
         "@ngtools/webpack": "8.0.0",
         "typescript": "3.4.5"
