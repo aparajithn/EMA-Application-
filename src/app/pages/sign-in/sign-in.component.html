@@ -1,1 +1,11 @@
+<Page>
 <ActionBar title="Sign In"></ActionBar>
+    <StackLayout class="layout">
+        <StackLayout class="input-field">
+            <TextField hint = "User ID" [text]="" keyboardType="string" autocorrect="false"></TextField>
+        </StackLayout>
+        <StackLayout class="button-field">
+            <Button class="btn btn-primary btn-active create-button" text="Sign Up" (tap)="routeSignUp()"></Button>
+        </StackLayout>
+    </StackLayout>
+</Page>
