@@ -1,11 +1,16 @@
 <Page>
 <ActionBar title="Sign In"></ActionBar>
-    <StackLayout class="layout">
-        <StackLayout class="input-field">
-            <TextField hint = "User ID" [text]="" keyboardType="string" autocorrect="false"></TextField>
-        </StackLayout>
-        <StackLayout class="button-field">
-            <Button class="btn btn-primary btn-active create-button" text="Sign Up" (tap)="routeSignUp()"></Button>
+    <StackLayout>
+        <Image src="~/images/PSU_Logo.png" stretch="aspectFit" width="300" class="logo"></Image>
+        <StackLayout class="form">
+            <StackLayout class="input-field">
+                <TextField id ="email" class="" hint="Username" keyboardType="email" autocorrect="false" autocapitalizationType="none"></TextField>
+            </StackLayout>
+            <StackLayout class="input-field">
+                <TextField id="password" class="" hint="Password" autocorrect="false" autocapitalizationType="none" secure="true"></TextField>
+            </StackLayout>
+            <Button text="Sign In" class="signin-button"></Button>
+
         </StackLayout>
     </StackLayout>
 </Page>

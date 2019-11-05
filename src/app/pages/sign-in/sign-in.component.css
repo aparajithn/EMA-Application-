@@ -1,0 +1,26 @@
+.input-field
+{
+    font-family: Arial;
+    width: 85%;
+    background-color: white;
+    border-color: black;
+    border-width: 2;
+    padding: 10px 10px 0px 10px;
+    margin-top: 10;
+    border-radius: 30px;
+}
+
+.logo
+{
+    margin: 50 0 60 0;
+}
+
+.form
+{
+    vertical-align: middle;
+}
+
+.signin-button
+{
+    width: 50%;
+}
