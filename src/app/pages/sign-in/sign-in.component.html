@@ -1,7 +1,7 @@
 <Page>
 <ActionBar title="Sign In"></ActionBar>
     <StackLayout>
-        <Image src="~/images/PSU_Logo.png" stretch="aspectFit" width="300" class="logo"></Image>
+        <Image src="~/images/EMA_Logo.png" stretch="aspectFit" width="300" class="logo"></Image>
         <StackLayout class="form">
             <StackLayout class="input-field">
                 <TextField id ="email" class="" hint="Username" keyboardType="email" autocorrect="false" autocapitalizationType="none"></TextField>
@@ -10,7 +10,8 @@
                 <TextField id="password" class="" hint="Password" autocorrect="false" autocapitalizationType="none" secure="true"></TextField>
             </StackLayout>
             <Button text="Sign In" class="signin-button"></Button>
-
+            <Label class="signup-routing-label" text="Not a user? Tap here!" (tap)="routeSignUp()"></Label>
         </StackLayout>
+        <Image src="~/images/PSU_Logo.png" stretch="aspectFit" width="200" class="psu-logo"></Image>
     </StackLayout>
 </Page>

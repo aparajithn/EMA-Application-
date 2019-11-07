@@ -2,9 +2,9 @@
 {
     font-family: Arial;
     width: 85%;
-    background-color: white;
-    border-color: black;
-    border-width: 2;
+    background-color: #e3e3e3;
+    border-color: #bfbfbf;
+    border-width: 1;
     padding: 10px 10px 0px 10px;
     margin-top: 10;
     border-radius: 30px;
@@ -23,4 +23,18 @@
 .signin-button
 {
     width: 50%;
+    margin-top: 50;
+}
+
+.psu-logo
+{
+    margin-top: 60;
+}
+
+.signup-routing-label
+{
+    font-size: 20;
+    text-alignment: center;
+    color: blue;
+    margin-top: 10;
 }

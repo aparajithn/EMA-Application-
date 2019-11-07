@@ -3,4 +3,5 @@ Button
     background-color: #337DF5;
     color: white;
     text-transform: capitalize;
+    border-radius: 30px;
 }
