@@ -1,7 +1,18 @@
-Button
+.android-default-button
 {
     background-color: #337DF5;
     color: white;
     text-transform: capitalize;
     border-radius: 30px;
+    font-size: 20;
+}
+
+.ios-default-button
+{
+    background-color: #337DF5;
+    color: white;
+    text-transform: capitalize;
+    border-radius: 25px;
+    font-size: 20;
+    padding: 12 0 12 0;
 }
