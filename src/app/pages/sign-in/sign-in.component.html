@@ -1,19 +1,19 @@
-<!--<Page>-->
+
 <ActionBar title="Sign In"></ActionBar>
-    <DockLayout>
-        <StackLayout dock="top">
-            <Image src="~/images/EMA_Logo.png" stretch="aspectFit" width="300" class="logo"></Image>
-            <StackLayout class="form">
-                <StackLayout android:class="android-input-field" ios:class="ios-input-field">
-                    <TextField id ="email" class="" hint="Evaluation ID" keyboardType="email" autocorrect="false" autocapitalizationType="none"></TextField>
-                </StackLayout>
-                <StackLayout android:class="android-input-field" ios:class="ios-input-field">
-                    <TextField id="password" class="" hint="Password" autocorrect="false" autocapitalizationType="none" secure="true"></TextField>
-                </StackLayout>
-                <Button text="Sign In" android:class="android-default-button signin-button" ios:class="ios-default-button signin-button"></Button>
-                <Label class="signup-routing-label" text="Not a user? Tap here to sign up!" (tap)="routeSignUp()"></Label>
+<DockLayout>
+    <StackLayout dock="top">
+        <Image src="~/images/EMA_Logo.png" stretch="aspectFit" width="300" class="logo"></Image>
+        <StackLayout class="form">
+            <StackLayout android:class="android-input-field" ios:class="ios-input-field">
+                <TextField [(ngModel)]="this.evaluationId" id ="email" class="" hint="Evaluation ID" keyboardType="email" autocorrect="false" autocapitalizationType="none"></TextField>
             </StackLayout>
+            <StackLayout android:class="android-input-field" ios:class="ios-input-field">
+                <TextField [(ngModel)]="this.password" id="password" class="" hint="Password" autocorrect="false" autocapitalizationType="none" secure="true"></TextField>
+            </StackLayout>
+            <Button text="Sign In" android:class="android-default-button signin-button" ios:class="ios-default-button signin-button" (tap)="signInButtonTapped()"></Button>
+            <Label class="signup-routing-label" text="Not a user? Tap here to sign up!" (tap)="routeSignUp($event)"></Label>
         </StackLayout>
-        <Image dock="bottom" src="~/images/PSU_Logo.png" class="psu-logo" stretch="aspectFit" width="200"></Image>
-    </DockLayout>
-<!--</Page>-->
+    </StackLayout>
+    <Image dock="bottom" src="~/images/PSU_Logo.png" class="psu-logo" stretch="aspectFit" width="200"></Image>
+</DockLayout>
+<!--test-->
