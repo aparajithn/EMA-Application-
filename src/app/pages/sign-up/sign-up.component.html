@@ -1,22 +1,20 @@
-
-    <ActionBar title="Sign Up"></ActionBar>
-    <DockLayout>
-        <StackLayout dock="top">
-            <Image src="~/images/EMA_Logo.png" stretch="aspectFit" width="300" class="logo"></Image>
-            <StackLayout class="form">
-                <StackLayout class="input-field">
-                    <TextField id ="email" class="" hint="Evaluation ID" keyboardType="email" autocorrect="false" autocapitalizationType="none"></TextField>
-                </StackLayout>
-                <StackLayout class="input-field">
-                    <TextField id="password" class="" hint="Password" autocorrect="false" autocapitalizationType="none" secure="true"></TextField>
-                </StackLayout>
-                <StackLayout class="input-field">
-                    <TextField id="Confirm password" class="" hint="Re-enter Password" autocorrect="false" autocapitalizationType="none" secure="true"></TextField>
-                </StackLayout>
-                <Button text="Sign Up" android:class="android-default-button signup-button" ios:class="ios-default-button signup-button"></Button>
-                <Label class="signup-routing-label" text="Already a user? Tap here to sign in!" (tap)="routeSignIn()"></Label>
+<ActionBar title="Sign Up"></ActionBar>
+<DockLayout>
+    <StackLayout dock="top">
+        <Image src="~/images/EMA_Logo.png" stretch="aspectFit" width="300" class="logo"></Image>
+        <StackLayout class="form">
+            <StackLayout android:class="android-input-field" ios:class="ios-input-field">
+                <TextField id ="email" class="" hint="Evaluation ID" keyboardType="email" autocorrect="false" autocapitalizationType="none"></TextField>
             </StackLayout>
-
+            <StackLayout android:class="android-input-field" ios:class="ios-input-field">
+                <TextField id="password" class="" hint="Password" autocorrect="false" autocapitalizationType="none" secure="true"></TextField>
+            </StackLayout>
+            <StackLayout android:class="android-input-field" ios:class="ios-input-field">
+                <TextField id="Confirm password" class="" hint="Re-enter Password" autocorrect="false" autocapitalizationType="none" secure="true"></TextField>
+            </StackLayout>
+            <Button text="Sign Up" android:class="android-default-button signup-button" ios:class="ios-default-button signup-button"></Button>
+            <Label class="signup-routing-label" text="Already a user? Tap here to sign in!" (tap)="routeSignIn()"></Label>
         </StackLayout>
-        <Image dock="bottom" src="~/images/PSU_Logo.png" stretch="aspectFit" width="200" class="psu-logo"></Image>
-    </DockLayout>
+    </StackLayout>
+    <Image dock="bottom" src="~/images/PSU_Logo.png" stretch="aspectFit" width="200" class="psu-logo"></Image>
+</DockLayout>
