@@ -21,35 +21,41 @@ export class SignInComponent implements OnInit {
         // Init your component properties here
     }
 
-    signInButtonTapped(): void {
-        console.log("BUTTON TAPPED");
-        console.log("Evaluation ID: " + this.evaluationId);
-        console.log("Password: " + this.password);
-        firebase.login(
-            {
-                type: firebase.LoginType.PASSWORD,
-                passwordOptions: {
-                    email: this.evaluationId + "@ema.org",
-                    password: this.password
-                }
-            })
-            .then(result =>
+    async signInButtonTapped(): Promise<string> {
+        console.log("test start");
+        let result_str = "";
+        //(async () => {
+            firebase.login(
                 {
-                    // ALERT FOR DEMO PURPOSES ONLY. TO BE REMOVED.
-                    JSON.stringify(result);
-                    console.log("RESULT EMAIL: " + JSON.stringify(result.email));
-                    dialogs.alert({
-                        title: "Successful",
-                        message: "Successfully logged in as " + JSON.stringify(result.email),
-                        okButtonText: "OK"
-                    }).then(() => {
-
-                    })
+                    type: firebase.LoginType.PASSWORD,
+                    passwordOptions: {
+                        email: this.evaluationId + "@ema.org",
+                        password: this.password
+                    }
                 })
-            .catch(error => console.log(error));
+                .then(result => {
+                    result_str = "Sign-in successful";
+                    console.log("RESULT EMAIL: " + JSON.stringify(result.email));
+                    // save information and route to main page
+                })
+                .catch(error => {
+                    result_str = "Sign-in failure";
+                    console.log(error)
+                });
+            console.log("done promise")
+        //})();
+        console.log("done function");
+        return new Promise<string>(resolve => {
+            resolve(result_str);
+        })
     }
 
      routeSignUp(): void {
          this.router.navigate(["/sign-up"]);
      }
+
+    private delay(ms: number)
+    {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
 }
