@@ -22,37 +22,33 @@ export class SignInComponent implements OnInit {
     }
 
     async signInButtonTapped(): Promise<string> {
-        console.log("test start");
         let result_str = "";
-        //(async () => {
-            firebase.login(
-                {
-                    type: firebase.LoginType.PASSWORD,
-                    passwordOptions: {
-                        email: this.evaluationId + "@ema.org",
-                        password: this.password
-                    }
-                })
-                .then(result => {
-                    result_str = "Sign-in successful";
-                    console.log("RESULT EMAIL: " + JSON.stringify(result.email));
-                    // save information and route to main page
-                })
-                .catch(error => {
-                    result_str = "Sign-in failure";
-                    console.log(error)
-                });
-            console.log("done promise")
-        //})();
-        console.log("done function");
-        return new Promise<string>(resolve => {
-            resolve(result_str);
-        })
+
+        await firebase.login(
+            {
+                type: firebase.LoginType.PASSWORD,
+                passwordOptions: {
+                    email: this.evaluationId + "@ema.org",
+                    password: this.password
+                }
+            })
+            .then(result => {
+                result_str = "Sign-in succeeded";
+                console.log("success sign in");
+                //console.log("RESULT EMAIL: " + JSON.stringify(result.email));
+                // save information and route to main page
+            })
+            .catch(error => {
+                result_str = "Sign-in failed";
+                console.log(error)
+            });
+
+        return result_str;
     }
 
-     routeSignUp(): void {
+    routeSignUp(): void {
          this.router.navigate(["/sign-up"]);
-     }
+    }
 
     private delay(ms: number)
     {
