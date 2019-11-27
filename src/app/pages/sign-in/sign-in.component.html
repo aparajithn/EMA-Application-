@@ -1,4 +1,3 @@
-
 <ActionBar title="Sign In"></ActionBar>
 <DockLayout>
     <StackLayout dock="top">
@@ -11,9 +10,8 @@
                 <TextField [(ngModel)]="this.password" id="password" class="" hint="Password" autocorrect="false" autocapitalizationType="none" secure="true"></TextField>
             </StackLayout>
             <Button text="Sign In" android:class="android-default-button signin-button" ios:class="ios-default-button signin-button" (tap)="signInButtonTapped()"></Button>
-            <Label class="signup-routing-label" text="Not a user? Tap here to sign up!" (tap)="routeSignUp($event)"></Label>
+            <Label class="signup-routing-label" text="Not a user? Tap here to sign up!" (tap)="routeSignUp()"></Label>
         </StackLayout>
     </StackLayout>
     <Image dock="bottom" src="~/images/PSU_Logo.png" class="psu-logo" stretch="aspectFit" width="200"></Image>
 </DockLayout>
-<!--test-->
