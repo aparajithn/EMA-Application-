@@ -2,3 +2,8 @@
 
 /node_modules/*
 !node_modules/nativescript-plugin-firebase
+!node_modules/@types
+!node_modules/karma
+!node_modules/karma-jasmine
+!node_modules/karma-nativescript-launcher
+!node_modules/karma-webpack
