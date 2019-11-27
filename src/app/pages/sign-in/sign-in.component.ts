@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
+import { fromObject, fromObjectRecursive, Observable, PropertyChangeData } from "tns-core-modules/data/observable";
 
 const firebase = require("nativescript-plugin-firebase");
 import * as dialogs from "tns-core-modules/ui/dialogs";
@@ -14,11 +15,11 @@ export class SignInComponent implements OnInit {
 
     evaluationId: string = "";
     password : string = "";
+    viewModel : any;
 
     constructor(private router: Router) {
     }
     ngOnInit(): void {
-        // Init your component properties here
     }
 
     async signInButtonTapped(): Promise<string> {
@@ -45,7 +46,7 @@ export class SignInComponent implements OnInit {
                     result_str = "Sign-in succeeded";
                     console.log("success sign in");
                     //console.log("RESULT EMAIL: " + JSON.stringify(result.email));
-                    // save information and route to main page
+                    this.router.navigate(["/home"]);
                 })
                 .catch(error => {
                     // if evaluation ID not found
@@ -72,6 +73,7 @@ export class SignInComponent implements OnInit {
                     }
                 });
         }
+        console.log("returning: " + result_str);
         return result_str;
     }
 
