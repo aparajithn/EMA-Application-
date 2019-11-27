@@ -17,7 +17,7 @@ describe("Test sign-in success", function() {
     });
 });
 
-describe("Test sign-in failure", function() {
+describe("Test sign-in failure from invalid evaluation id", function() {
     it("should return sign-in failed", function (done) {
         let signInComponent = new SignInComponent(null);
 
