@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
+import { fromObject, fromObjectRecursive, Observable, PropertyChangeData } from "tns-core-modules/data/observable";
 
 const firebase = require("nativescript-plugin-firebase");
 import * as dialogs from "tns-core-modules/ui/dialogs";
@@ -14,17 +15,33 @@ export class SignInComponent implements OnInit {
 
     evaluationId: string = "";
     password : string = "";
+    viewModel : any;
 
     constructor(private router: Router) {
     }
     ngOnInit(): void {
-        // Init your component properties here
     }
 
     async signInButtonTapped(): Promise<string> {
         let result_str = "";
 
-        if(this.password.length < 6) {
+        if(this.evaluationId === "") {
+            result_str = "Sign-in failed: No evaluation id";
+            dialogs.alert({
+                title: "Unable to sign in",
+                message: "An Evaluation ID is required.",
+                okButtonText: "OK"
+            }).then(() => {})
+        }
+        else if(this.password === "") {
+            result_str = "Sign-in failed: No password";
+            dialogs.alert({
+                title: "Unable to sign in",
+                message: "A password is required.",
+                okButtonText: "OK"
+            }).then(() => {})
+        }
+        else if(this.password.length < 6) {
             result_str = "Sign-in failed: invalid password"
             dialogs.alert({
                 title: "Unable to sign in",
@@ -52,7 +69,7 @@ export class SignInComponent implements OnInit {
                         this.router.navigate(["/home"]);
                     })
                     //console.log("RESULT EMAIL: " + JSON.stringify(result.email));
-                    // save information and route to main page
+                    this.router.navigate(["/home"]);
                 })
                 .catch(error => {
                     // if evaluation ID not found
@@ -79,6 +96,7 @@ export class SignInComponent implements OnInit {
                     }
                 });
         }
+        console.log("returning: " + result_str);
         return result_str;
     }
 
