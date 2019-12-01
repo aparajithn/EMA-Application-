@@ -43,7 +43,7 @@ export class SignInComponent implements OnInit {
                         message: "Successfully logged in as " + JSON.stringify(result.email),
                         okButtonText: "OK"
                     }).then(() => {
-
+                        this.router.navigate(["/home"]);
                     })
                 })
             .catch(error => console.log(error));
