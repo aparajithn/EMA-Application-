@@ -43,11 +43,12 @@ export class SignUpComponent implements OnInit {
             result_str = "Sign-up failed: Passwords do not match";
             dialogs.alert({
                 title: "Unable to sign up",
-                message: "The passwords provided do not match.",
+                message: "The passwords provided must match.",
                 okButtonText: "OK"
             }).then(() => {})
         }
         else if(this.password1.length < 6) {
+            result_str = "Sign-up failed: invalid password"
             dialogs.alert({
                 title: "Unable to sign in",
                 message: "Password should be at least 6 characters long.",
