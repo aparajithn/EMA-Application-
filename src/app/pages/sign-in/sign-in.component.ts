@@ -25,7 +25,23 @@ export class SignInComponent implements OnInit {
     async signInButtonTapped(): Promise<string> {
         let result_str = "";
 
-        if(this.password.length < 6) {
+        if(this.evaluationId === "") {
+            result_str = "Sign-in failed: No evaluation id";
+            dialogs.alert({
+                title: "Unable to sign in",
+                message: "An Evaluation ID is required.",
+                okButtonText: "OK"
+            }).then(() => {})
+        }
+        else if(this.password === "") {
+            result_str = "Sign-in failed: No password";
+            dialogs.alert({
+                title: "Unable to sign in",
+                message: "A password is required.",
+                okButtonText: "OK"
+            }).then(() => {})
+        }
+        else if(this.password.length < 6) {
             result_str = "Sign-in failed: invalid password"
             dialogs.alert({
                 title: "Unable to sign in",
