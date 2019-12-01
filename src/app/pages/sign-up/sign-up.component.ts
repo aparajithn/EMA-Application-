@@ -60,7 +60,9 @@ export class SignUpComponent implements OnInit {
                 title: "For demo",
                 message: "Valid credentials. This is where the call to the database is made.",
                 okButtonText: "OK"
-            }).then(() => {})
+            }).then(() => {
+                this.router.navigate(["/sign-in"]);
+            })
             // Send a request to the server to see if evaluation ID exists
             // If it does, use firebase to create a user
         }

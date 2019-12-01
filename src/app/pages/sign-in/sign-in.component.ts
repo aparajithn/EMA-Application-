@@ -72,8 +72,9 @@ export class SignInComponent implements OnInit {
                     this.router.navigate(["/home"]);
                 })
                 .catch(error => {
+                    console.log(error);
                     // if evaluation ID not found
-                    if (error.includes('FirebaseAuthInvalidUserException')) {
+                    if (error.includes('There is no user record corresponding to this identifier. The user may have been deleted.')) {
                         result_str = "Sign-in failed: invalid evaluation ID";
                         console.error("USER NOT FOUND");
                         dialogs.alert({
@@ -82,7 +83,7 @@ export class SignInComponent implements OnInit {
                             okButtonText: "OK"
                         }).then(() => {
                         })
-                    } else if (error.includes('FirebaseAuthInvalidCredentialsException')) {
+                    } else if (error.includes('The password is invalid or the user does not have a password.')) {
                         result_str = "Sign-in failed: incorrect password";
                         console.error("INCORRECT PASSWORD");
                         dialogs.alert({
