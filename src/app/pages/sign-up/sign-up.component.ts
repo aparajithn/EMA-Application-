@@ -1,6 +1,10 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import * as dialogs from "ui/dialogs";
+import { device } from "tns-core-modules/platform";
+const firebase = require("nativescript-plugin-firebase");
+
+import { HttpPostService } from "~/app/services/http-post.service";
 
 @Component({
     selector: "SignUp",
@@ -14,7 +18,8 @@ export class SignUpComponent implements OnInit {
     password1: string = "";
     password2: string = "";
 
-    constructor(private router: Router) {
+    constructor(private router: Router,
+                private postService: HttpPostService) {
     }
     ngOnInit(): void {
         // Init your component properties here
@@ -22,6 +27,7 @@ export class SignUpComponent implements OnInit {
 
     async signUpButtonTapped(): Promise<string> {
         let result_str = "";
+        let class_scope = this;
 
         if(this.evaluationId === "") {
             result_str = "Sign-up failed: No evaluation id";
@@ -56,15 +62,52 @@ export class SignUpComponent implements OnInit {
             }).then(() => {})
         }
         else {
-            dialogs.alert({
-                title: "For demo",
-                message: "Valid credentials. This is where the call to the database is made.",
-                okButtonText: "OK"
-            }).then(() => {
-                this.router.navigate(["/sign-in"]);
-            })
             // Send a request to the server to see if evaluation ID exists
-            // If it does, use firebase to create a user
+            this.postService
+                .postData(
+                    { userID: +this.evaluationId // evaluation ID (int)
+                          // the following values will be added later:
+                           //deviceID: device.uuid,     // device ID
+                           //notificationToken: "",     // firebase notification token
+                           //firebaseUserToken: ""      // firebase user token
+                    },
+                    "https://psubehrendema.org/checkUser.php")
+                .subscribe(res => {
+                    let evalId_exists = (<any>res).exists;
+
+                    // if evaluationId does not exist alert user
+                    if(!evalId_exists) {
+                        dialogs.alert({
+                            title: "Unable to sign up",
+                            message: "Evaluation ID does not exist.",
+                            okButtonText: "OK"
+                        }).then(() => {})
+                    }
+                    // if evaluationId does exist, use firebase to create a user and nav back to sign in page
+                    else {
+                        firebase.createUser({
+                            email: this.evaluationId + "@ema.org",
+                            password: this.password1
+                        }).then(
+                            function (result) {
+                                dialogs.alert({
+                                    title: "Sign up successful",
+                                    okButtonText: "OK"
+                                }).then(() => {
+                                    class_scope.router.navigate(["/sign-in"]);
+                                })
+                            },
+                            function (errorMessage) {
+                                dialogs.alert({
+                                    title: "Unable to sign up",
+                                    message: "An error occurred while signing up",
+                                    okButtonText: "OK"
+                                }).then(() => {})
+                            }
+
+                        )
+                    }
+                });
         }
 
         return result_str;
