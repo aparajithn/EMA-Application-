@@ -1,3 +1,15 @@
-<!--<Page>-->
-<ActionBar title="Home"></ActionBar>
-<!--</Page>-->
+<Page xmlns:Card="nativescript-cardview">
+<StackLayout>
+        <Card:CardView class="cardStyle" margin="40" elevation="40" radius="5">
+            <grid-layout rows="40, auto, auto" columns="auto, auto, *">
+                <label h1 text="PCL 5" class="info" textWrap="true" row="1" colSpan="3" />
+                <button text="DECLINE" tap="goAway" row="2" col="0"  />
+                <button text="ACCEPT" row="2" col="1" />
+
+                <label text = "Are you feeling depressed" colspan = "3" row = "5"/>
+            </grid-layout>
+        </Card:CardView>
+    </StackLayout>
+</Page>
+
+
