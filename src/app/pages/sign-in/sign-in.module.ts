@@ -1,5 +1,6 @@
 import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
 import { NativeScriptCommonModule } from "nativescript-angular/common";
+import {NativeScriptFormsModule} from "nativescript-angular/forms";
 
 import { SignInRoutingModule } from "./sign-in-routing.module";
 import { SignInComponent } from "./sign-in.component";
@@ -7,7 +8,8 @@ import { SignInComponent } from "./sign-in.component";
 @NgModule({
     imports: [
         NativeScriptCommonModule,
-        SignInRoutingModule
+        SignInRoutingModule,
+        NativeScriptFormsModule
     ],
     declarations: [
         SignInComponent

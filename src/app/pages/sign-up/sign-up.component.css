@@ -1,4 +1,4 @@
-.input-field
+.android-input-field
 {
     font-family: Arial;
     width: 85%;
@@ -6,6 +6,18 @@
     border-color: #bfbfbf;
     border-width: 1;
     padding: 10px 10px 0px 10px;
+    margin-top: 10;
+    border-radius: 30px;
+}
+
+.ios-input-field
+{
+    font-family: Arial;
+    width: 85%;
+    background-color: #e3e3e3;
+    border-color: #bfbfbf;
+    border-width: 1;
+    padding: 15 10 15 10;
     margin-top: 10;
     border-radius: 30px;
 }
@@ -37,6 +49,6 @@
 {
     font-size: 20;
     text-alignment: center;
-    color: blue;
+    color: #035599;
     margin-top: 10;
 }

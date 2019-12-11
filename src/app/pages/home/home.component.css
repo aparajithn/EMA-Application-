@@ -1,0 +1,53 @@
+.android-input-field
+{
+    font-family: Arial;
+    width: 85%;
+    background-color: #e3e3e3;
+    border-color: #bfbfbf;
+    border-width: 1;
+    padding: 10px 10px 0px 10px;
+    margin-top: 10;
+    border-radius: 30px;
+}
+
+.ios-input-field
+{
+    font-family: Arial;
+    width: 85%;
+    background-color: #e3e3e3;
+    border-color: #bfbfbf;
+    border-width: 1;
+    padding: 15 10 15 10;
+    margin-top: 10;
+    border-radius: 30px;
+}
+
+.logo
+{
+    margin: 40 0 20 0;
+}
+
+.form
+{
+    vertical-align: middle;
+}
+
+.signin-button
+{
+    width: 50%;
+    margin-top: 15;
+}
+
+.psu-logo
+{
+    vertical-align: bottom;
+    margin-bottom: 10;
+}
+
+.signup-routing-label
+{
+    font-size: 20;
+    text-alignment: center;
+    color: blue;
+    margin-top: 10;
+}
