@@ -10,12 +10,12 @@
       "scale" : "3x"
     },
     {
-      "orientation" : "landscape",
-      "idiom" : "iphone",
       "extent" : "full-screen",
+      "idiom" : "iphone",
+      "subtype" : "2436h",
       "filename" : "Default-Landscape-X.png",
       "minimum-system-version" : "11.0",
-      "subtype" : "2436h",
+      "orientation" : "landscape",
       "scale" : "3x"
     },
     {
