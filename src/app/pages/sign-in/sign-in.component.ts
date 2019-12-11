@@ -61,13 +61,6 @@ export class SignInComponent implements OnInit {
                 .then(result => {
                     result_str = "Sign-in succeeded";
                     console.log("success sign in");
-                    dialogs.alert({
-                        title: "Successful",
-                        message: "Successfully logged in as " + JSON.stringify(result.email),
-                        okButtonText: "OK"
-                    }).then(() => {
-                        this.router.navigate(["/home"]);
-                    })
                     //console.log("RESULT EMAIL: " + JSON.stringify(result.email));
                     this.router.navigate(["/home"]);
                 })

@@ -4,7 +4,7 @@
         <Image src="~/images/EMA_Logo.png" stretch="aspectFit" width="300" class="logo"></Image>
         <StackLayout class="form">
             <StackLayout android:class="android-input-field" ios:class="ios-input-field">
-                <TextField [(ngModel)]="this.evaluationId" id ="email" class="" hint="Evaluation ID" keyboardType="email" autocorrect="false" autocapitalizationType="none"></TextField>
+                <TextField [(ngModel)]="this.evaluationId" id ="evaluation_id" class="" hint="Evaluation ID" keyboardType="number" autocorrect="false" autocapitalizationType="none"></TextField>
             </StackLayout>
             <StackLayout android:class="android-input-field" ios:class="ios-input-field">
                 <TextField [(ngModel)]="this.password" id="password" class="" hint="Password" autocorrect="false" autocapitalizationType="none" secure="true"></TextField>
