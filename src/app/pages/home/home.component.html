@@ -1,15 +1,20 @@
-<Page xmlns:Card="nativescript-cardview">
-<StackLayout>
-        <Card:CardView class="cardStyle" margin="40" elevation="40" radius="5">
-            <grid-layout rows="40, auto, auto" columns="auto, auto, *">
-                <label h1 text="PCL 5" class="info" textWrap="true" row="1" colSpan="3" />
-                <button text="DECLINE" tap="goAway" row="2" col="0"  />
-                <button text="ACCEPT" row="2" col="1" />
-
-                <label text = "Are you feeling depressed" colspan = "3" row = "5"/>
-            </grid-layout>
-        </Card:CardView>
-    </StackLayout>
-</Page>
-
-
+<grid-layout rows="auto, auto, auto,auto,auto,auto" columns="auto,auto,auto">
+    <Label text="My Surveys"  class = "h1" row = "0" column = "1" textAlignment="center" margin="40"></Label>
+    <Label text="Completed Surveys" class ="h3" row="1" column = 1 textDecoration="underline" margin="20"></Label>
+    <Label text="Show all" class = "h3"  row = "1" column = "1" textAlignment="right" margin="20" textDecoration="underline"></Label>
+    <CardView class="cardStyle" margin="10" elevation="40" radius="40" row = "2" column = "1" width = "400">
+        <StackLayout>
+            <label class = "h2" text="PCL 5" textWrap="true" row="3" colSpan="3"></label>
+            <label text = "The PCL-5 is a 20-item self-report measure that assesses
+                the 20 DSM-5 symptoms of PTSD" colspan = "3" row = "4"></label>
+            <Button text="&#xf35a;" class="far" row = "5" width = "100" horizontalAlignment = "left"></Button>
+        </StackLayout>
+    </CardView>
+    <CardView class="cardStyle" margin="10" elevation="40" radius="10" row ="6" column = "1" width = "400">
+        <StackLayout>
+            <label class = "h1" text="PCL 5"  textWrap="true" row="7" colSpan="3"></label>
+            <label text = "Are you feeling depressed" colspan = "3" row = "8"></label>
+            <Button text="&#xf35a;" class="far" row = "5" width = "100" horizontalAlignment = "left"></Button>
+        </StackLayout>
+    </CardView>
+</grid-layout>

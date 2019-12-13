@@ -1,6 +1,6 @@
 .android-input-field
 {
-    font-family: Arial;
+
     width: 85%;
     background-color: #e3e3e3;
     border-color: #bfbfbf;
@@ -12,7 +12,7 @@
 
 .ios-input-field
 {
-    font-family: Arial;
+    
     width: 85%;
     background-color: #e3e3e3;
     border-color: #bfbfbf;
@@ -53,6 +53,26 @@
 }
 
 .cardStyle {
-    background-color: blue;
+    background-color: #035599;
     color: rgb(237,237,237);
+}
+
+.h1{
+    font-size: 30;
+    color: #035599;
+}
+.h2{
+    font-size: 30;
+    color: rgb(237,237,237);
+}
+.h3{
+    font-size:14;
+    color: #035599;
+}
+
+.far {
+    font-family: "Font Awesome 5 Free", "fa-regular-400";
+    font-weight: 400;
+    font-size: 20;
+    color: #035599;
 }
