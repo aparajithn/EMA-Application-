@@ -1,5 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
+import { registerElement } from 'nativescript-angular/element-registry';
+import { CardView } from '@nstudio/nativescript-cardview';
+registerElement('CardView', () => CardView);
 
 @Component({
     selector: "Home",

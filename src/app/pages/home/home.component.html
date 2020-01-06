@@ -1,20 +1,33 @@
-<grid-layout rows="auto, auto, auto,auto,auto,auto" columns="auto,auto,auto">
-    <Label text="My Surveys"  class = "h1" row = "0" column = "1" textAlignment="center" margin="40"></Label>
-    <Label text="Completed Surveys" class ="h3" row="1" column = 1 textDecoration="underline" margin="20"></Label>
-    <Label text="Show all" class = "h3"  row = "1" column = "1" textAlignment="right" margin="20" textDecoration="underline"></Label>
+<grid-layout rows="auto, auto, auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto,auto" columns="auto,auto,auto">
+    <Label text="My Surveys"  class = "h1" row = "0" column = "1" textAlignment="center"></Label>
+    <Label text="Uncompleted Surveys" class ="h3" row="1" column = 1 textDecoration="underline" margin = 10></Label>
+    <Label text="Show all" class = "h3"  row = "1" column = "1" textAlignment="right" textDecoration="underline" margin = 10 ></Label>
     <CardView class="cardStyle" margin="10" elevation="40" radius="40" row = "2" column = "1" width = "400">
         <StackLayout>
             <label class = "h2" text="PCL 5" textWrap="true" row="3" colSpan="3"></label>
-            <label text = "The PCL-5 is a 20-item self-report measure that assesses
-                the 20 DSM-5 symptoms of PTSD" colspan = "3" row = "4"></label>
+            <label text = "The PCL-5 is a 20-item self-report measure that assesses the 20 DSM-5 symptoms of PTSD" colspan = "3" row = "4" textWrap = "true"></label>
             <Button text="&#xf35a;" class="far" row = "5" width = "100" horizontalAlignment = "left"></Button>
         </StackLayout>
     </CardView>
     <CardView class="cardStyle" margin="10" elevation="40" radius="10" row ="6" column = "1" width = "400">
         <StackLayout>
-            <label class = "h1" text="PCL 5"  textWrap="true" row="7" colSpan="3"></label>
+            <label class = "h2" text="PCL 5"   row="7" colSpan="3"></label>
             <label text = "Are you feeling depressed" colspan = "3" row = "8"></label>
-            <Button text="&#xf35a;" class="far" row = "5" width = "100" horizontalAlignment = "left"></Button>
+            <Button text="&#xf35a;" class="far" row = "9" width = "100" horizontalAlignment = "left"></Button>
+        </StackLayout>
+    </CardView>
+    <Label text="Completed Surveys" class ="h3" row="10" column = 1 textDecoration="underline" margin = 10></Label>
+    <Label text="Show all" class = "h3"  row = "10" column = "1" textAlignment="right" textDecoration="underline" margin = 10 ></Label>
+    <CardView class="cardStyle" margin="10" elevation="40" radius="40" row = "12" column = "1" width = "400">
+        <StackLayout>
+            <label class = "h2" text="PCL 5" textWrap="true" row="13" colSpan="3"></label>
+            <Button text="&#xf35a;" class="far" row = "14" width = "100" horizontalAlignment = "left"></Button>
+        </StackLayout>
+    </CardView>
+    <CardView class="cardStyle" margin="10" elevation="40" radius="10" row ="15" column = "1" width = "400">
+        <StackLayout>
+            <label class = "h2" text="PCL 5"   row="16" colSpan="3"></label>
+            <Button text="&#xf35a;" class="far" row = "17" width = "100" horizontalAlignment = "left"></Button>
         </StackLayout>
     </CardView>
 </grid-layout>
