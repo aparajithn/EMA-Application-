@@ -82,6 +82,7 @@ export class SignUpComponent implements OnInit {
                             message: "Evaluation ID does not exist.",
                             okButtonText: "OK"
                         }).then(() => {})
+                        result_str = "Sign-up failed: Non-existent evaluation id";
                     }
                     // if evaluationId does exist, use firebase to create a user and nav back to sign in page
                     else {
@@ -90,6 +91,7 @@ export class SignUpComponent implements OnInit {
                             password: this.password1
                         }).then(
                             function (result) {
+                                result_str = "Sign-up succeeded";
                                 dialogs.alert({
                                     title: "Sign up successful",
                                     okButtonText: "OK"
@@ -97,12 +99,22 @@ export class SignUpComponent implements OnInit {
                                     class_scope.router.navigate(["/sign-in"]);
                                 })
                             },
-                            function (errorMessage) {
-                                dialogs.alert({
-                                    title: "Unable to sign up",
-                                    message: "An error occurred while signing up",
-                                    okButtonText: "OK"
-                                }).then(() => {})
+                            function (error) {
+                                if (error.includes("The email address is already in use by another account.")) {
+                                    result_str = "Sign-up failed: Evaluation id already in use";
+                                    dialogs.alert({
+                                        title: "Unable to sign up",
+                                        message: "An error occurred while signing up",
+                                        okButtonText: "OK"
+                                    }).then(() => {})
+                                }
+                                else {
+                                    dialogs.alert({
+                                        title: "Unable to sign up",
+                                        message: "An error occurred while signing up",
+                                        okButtonText: "OK"
+                                    }).then(() => {})
+                                }
                             }
 
                         )
