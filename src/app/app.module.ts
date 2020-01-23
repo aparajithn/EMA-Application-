@@ -1,10 +1,12 @@
 import { NativeScriptModule } from "nativescript-angular/nativescript.module";
 import { NativeScriptFormsModule } from "nativescript-angular/forms";
+import { NativeScriptHttpClientModule } from "nativescript-angular/http-client";
 
-import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
+import { forwardRef, NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
+import { HttpPostService } from "~/app/services/http-post.service";
 
 // set up firebase plugin
 const firebase = require("nativescript-plugin-firebase");
@@ -28,12 +30,15 @@ firebase.init({
     imports: [
         NativeScriptModule,
         NativeScriptFormsModule,
+        NativeScriptHttpClientModule,
         AppRoutingModule
     ],
     declarations: [
         AppComponent
     ],
-    providers: [],
+    providers: [
+        forwardRef(() => HttpPostService)
+    ],
     schemas: [
         NO_ERRORS_SCHEMA
     ]

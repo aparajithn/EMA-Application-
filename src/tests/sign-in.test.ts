@@ -1,8 +1,13 @@
 import { SignInComponent} from "~/app/pages/sign-in/sign-in.component";
+import { Router } from "@angular/router";
 
 describe("Test sign-in success", function() {
+
+    let router = jasmine.createSpyObj("Router", ["navigate"]);
+
     it("should return sign-in succeeded", function(done) {
-        let signInComponent = new SignInComponent(null);
+
+        let signInComponent = new SignInComponent(router);
 
         // valid credentials
         signInComponent.evaluationId = "8000";
@@ -18,6 +23,7 @@ describe("Test sign-in success", function() {
 
 describe("Test sign-in failure from invalid evaluation id", function() {
     it("should return sign-in failed invalid evaluation id", function (done) {
+
         let signInComponent = new SignInComponent(null);
 
         // invalid evaluation ID

@@ -1,6 +1,7 @@
 import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
 import { NativeScriptCommonModule } from "nativescript-angular/common";
-import {NativeScriptFormsModule} from "nativescript-angular/forms";
+import { NativeScriptFormsModule } from "nativescript-angular/forms";
+import { NativeScriptHttpClientModule } from "nativescript-angular/http-client";
 
 import { SignUpRoutingModule } from "./sign-up-routing.module";
 import { SignUpComponent } from "./sign-up.component";
@@ -9,7 +10,8 @@ import { SignUpComponent } from "./sign-up.component";
     imports: [
         NativeScriptCommonModule,
         SignUpRoutingModule,
-        NativeScriptFormsModule
+        NativeScriptFormsModule,
+        NativeScriptHttpClientModule
     ],
     declarations: [
         SignUpComponent
