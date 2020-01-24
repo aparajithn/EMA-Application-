@@ -62,7 +62,6 @@ export class SignUpComponent implements OnInit {
             }).then(() => {})
         }
         else {
-            console.log("HERE2");
             // Send a request to the server to see if evaluation ID exists
             this.postService
                 .postData(
@@ -74,7 +73,6 @@ export class SignUpComponent implements OnInit {
                     },
                     "https://psubehrendema.org/checkUser.php")
                 .subscribe(res => {
-                    console.log("HERE3");
                     let evalId_exists = (<any>res).exists;
 
                     // if evaluationId does not exist alert user
