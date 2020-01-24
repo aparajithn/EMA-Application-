@@ -9,7 +9,6 @@ describe("Test sign-up success from valid evaluation id and password", function(
     let httpPostService = jasmine.createSpyObj("HttpPostService", ["postData"]);
 
     it("should return sign-up succeeded", function(done) {
-        console.log("HERE");
 
         let signUpComponent = new SignUpComponent(router, httpPostService);
 
