@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit {
         // Init your component properties here
     }
 
-     routeSignUp(): void {
-         this.router.navigate(["/sign-up"]);
+     routeonClick(): void {
+         this.router.navigate(["/scaled-question"]);
      }
 }
