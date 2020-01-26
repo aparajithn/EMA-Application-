@@ -1,4 +1,6 @@
 <ActionBar title="Survey Questions"></ActionBar>
 <StackLayout>
-<ng5-slider [(value)]="value" [options]="options"></ng5-slider>
+    <Slider  [(ngModel)]="this.maxValue" value= "1" minValue ="0"  (valueChange)="onSliderValueChange($event)"></Slider>
+    <Label text = "{{TextSource}}"></Label>
 </StackLayout>
+
