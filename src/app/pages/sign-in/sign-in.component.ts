@@ -4,6 +4,7 @@ import { Router } from "@angular/router";
 const appSettings = require("application-settings");
 const firebase = require("nativescript-plugin-firebase");
 import * as dialogs from "tns-core-modules/ui/dialogs";
+import {Page} from "ui/page";
 
 @Component({
     selector: "SignIn",
@@ -16,10 +17,12 @@ export class SignInComponent implements OnInit {
     evaluationId: string = "";
     password : string = "";
 
-    constructor(private router: Router) {
+    constructor(private router: Router,
+                private page: Page) {
     }
 
     ngOnInit(): void {
+        this.page.actionBarHidden = true;
     }
 
     async signInButtonTapped(): Promise<string> {

@@ -4,6 +4,7 @@ import { Router } from "@angular/router";
 const appSettings = require("application-settings");
 
 import { HttpPostService } from "~/app/services/http-post.service";
+import {Page} from "ui/page";
 
 @Component({
     selector: "Home",
@@ -16,11 +17,14 @@ export class HomeComponent implements OnInit {
     display_text: string = "Looking for an available survey...";
 
     constructor(private router: Router,
-                private postService: HttpPostService) {
+                private postService: HttpPostService,
+                private page: Page) {
     }
 
     ngOnInit(): void {
-        console.log("INIT HOME");
+
+        this.page.actionBarHidden = true;
+
         // Send request to the server to check for available survey
         this.postService
             .postData(
