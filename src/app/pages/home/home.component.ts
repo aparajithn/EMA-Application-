@@ -13,11 +13,14 @@ import { HttpPostService } from "~/app/services/http-post.service";
 })
 export class HomeComponent implements OnInit {
 
+    display_text: string = "Looking for an available survey...";
+
     constructor(private router: Router,
                 private postService: HttpPostService) {
     }
 
     ngOnInit(): void {
+        console.log("INIT HOME");
         // Send request to the server to check for available survey
         this.postService
             .postData(
@@ -31,8 +34,30 @@ export class HomeComponent implements OnInit {
                 },
                 "https://psubehrendema.org/getSurvey.php"
             )
-            .subscribe(res => {
-                console.log(res);
+            .subscribe(
+            res => {
+                // save survey and give to user
+            },
+            err => {
+                let error_text = (<any>err).error.text;
+                let error_status = (<any>err).status;
+
+                // if error is caused by no available surveys
+                if (error_text === "NO_AVAILABLE_SURVEY") {
+                    this.display_text = "There is not an available survey at this time.";
+                }
+                // if error is caused by server
+                else if (error_text === "ERROR") {
+                    this.display_text = "The server is currently down for maintenance.";
+                }
+                // unknown error
+                else if (error_status == 0) {
+                    this.display_text = "Cannot communicate with destination server at this time.";
+                }
+                // any other error encountered
+                else {
+                    this.display_text = "An error occurred while retrieving available surveys. Please try again later.";
+                }
             })
     }
 
