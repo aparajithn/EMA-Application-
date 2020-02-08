@@ -17,6 +17,23 @@
     padding: 12 0 12 0;
 }
 
+.h1{
+    font-size: 30;
+    color: #035599;
+}
+.h2{
+    font-size: 30;
+    color: rgb(237,237,237);
+}
+.h3{
+    font-size:14;
+    color: #035599;
+}
+.h4{
+    font-size:16;
+    color:#035599;
+}
+
 *{
     font-family: SF-Pro-Display-Semibold;
 }
