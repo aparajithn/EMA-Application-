@@ -3,17 +3,9 @@ import { Router } from "@angular/router";
 import { Slider } from "tns-core-modules/ui/slider";
 import { registerElement } from 'nativescript-angular/element-registry';
 import { CardView } from '@nstudio/nativescript-cardview';
+import {Survey} from "~/app/models/survey";
+import {Question} from "~/app/models/question";
 registerElement('CardView', () => CardView);
-const question = {
-    id: 182,
-    type:"Scaled",
-    text1:"How much have you been bothered by repeated, disturbing, and unwanted memories of the stressful experience?",
-    lower_bound:0,
-    upper_bound:4,
-    lb_desc: "Not at all",
-    up_desc: "Extremely"
-}
-
 
 @Component({
     selector: "ScaledQuestion",
@@ -22,24 +14,28 @@ const question = {
     templateUrl: "./scaled-question.component.html"
 })
 export class ScaledQuestionComponent implements OnInit  {
-    maxValue = question.upper_bound;
-    minValue = question.lower_bound;
-    text:string = question.text1;
-    lb_desc:string = question.lb_desc;
-    up_desc:string = question.up_desc;
 
-
+    question: Question;
+    maxValue: number;
+    minValue: number;
+    text: string;
+    lb_desc: string;
+    up_desc: string;
 
     constructor(private router: Router) {
-
     }
+
     ngOnInit(): void {
 
+        // index temporarily hard-coded until factory set up
+        this.question = Survey.getInstance().getQuestionByIdx(0);
 
+        this.maxValue = this.question.upper_bound;
+        this.minValue = this.question.lower_bound;
+        this.text = this.question.text;
+        this.lb_desc = this.question.lb_desc;
+        this.up_desc = this.question.ub_desc;
     }
-
-
-
 
     onSliderValueChange(args) {
         let slider = <Slider>args.object;
