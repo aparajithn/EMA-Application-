@@ -1,3 +1,9 @@
+.cardStyle {
+    background-color: #035599;
+    color: rgb(237,237,237);
+}
+
+
 .android-input-field
 {
     width: 85%;
@@ -30,7 +36,7 @@
     vertical-align: middle;
 }
 
-.signup-button
+.signin-button
 {
     width: 50%;
     margin-top: 15;
@@ -38,9 +44,8 @@
 
 .psu-logo
 {
-    margin-bottom: 10;
     vertical-align: bottom;
-
+    margin-bottom: 10;
 }
 
 .signup-routing-label

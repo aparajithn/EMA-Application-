@@ -7,3 +7,4 @@
 !node_modules/karma-jasmine
 !node_modules/karma-nativescript-launcher
 !node_modules/karma-webpack
+!node_modules/@nstudio

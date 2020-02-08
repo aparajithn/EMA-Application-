@@ -1,6 +1,5 @@
 .android-input-field
 {
-    font-family: Arial;
     width: 85%;
     background-color: #e3e3e3;
     border-color: #bfbfbf;
@@ -12,7 +11,6 @@
 
 .ios-input-field
 {
-    font-family: Arial;
     width: 85%;
     background-color: #e3e3e3;
     border-color: #bfbfbf;

@@ -1,5 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
+import { registerElement } from 'nativescript-angular/element-registry';
+import { CardView } from '@nstudio/nativescript-cardview';
+registerElement('CardView', () => CardView);
 
 const appSettings = require("application-settings");
 
@@ -65,7 +68,7 @@ export class HomeComponent implements OnInit {
             })
     }
 
-    routeSignUp(): void {
+   routeSignUp(): void {
         this.router.navigate(["/sign-up"]);
     }
 }

@@ -1,0 +1,13 @@
+<ActionBar title="Survey Questions"></ActionBar>
+<StackLayout orientation = "vertical">
+    <CardView class="cardStyle" margin="80" elevation="40"   width = "350" height = "350" radius = "40">
+        <label class = "h2" [text]='text' textWrap="true" margin = "10"></label>
+    </CardView>
+    <Slider  [maxValue]='maxValue'  [minValue] ='minValue'  (valueChange)="onSliderValueChange($event)"></Slider>
+    <StackLayout orientation = "horizontal">
+        <label class = "h4"[text] = 'lb_desc' textWrap = 'true' width = "290" margin = "8"></label>
+        <label class ="h4" [text] = 'up_desc'   textWrap = 'true' margin = "8"></label>
+    </StackLayout>
+    <Button text = "Next" android:class="android-default-button signin-button" ios:class="ios-defualt-button signin-button "></Button>
+</StackLayout>
+
