@@ -1,10 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<ActionBar title="Survey Questions"></ActionBar>
+<StackLayout orientation = "vertical">
+    <CardView class="cardStyle" margin="15" elevation="40"   width = "300x" height = "300" radius = "40">
+        <label class = "h2" [text]='text' textWrap="true" margin = "10" textAlignment="center"></label>
+    </CardView>
+    <TimePicker hour="10" minute="25"
+                (timeChange)="onPickerLoaded($event)"
+                class="m-15">
+    </TimePicker>
+    <Button text = "Next" android:class="android-default-button signin-button" ios:class="ios-defualt-button signin-button "></Button>
+</StackLayout>
 
-</body>
-</html>
