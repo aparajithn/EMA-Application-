@@ -5,6 +5,7 @@ import { device } from "tns-core-modules/platform";
 const firebase = require("nativescript-plugin-firebase");
 
 import { HttpPostService } from "~/app/services/http-post.service";
+import {Page} from "ui/page";
 
 @Component({
     selector: "SignUp",
@@ -19,10 +20,11 @@ export class SignUpComponent implements OnInit {
     password2: string = "";
 
     constructor(private router: Router,
-                private postService: HttpPostService) {
+                private postService: HttpPostService,
+                private page: Page) {
     }
     ngOnInit(): void {
-        // Init your component properties here
+        this.page.actionBarHidden = true;
     }
 
     async signUpButtonTapped(): Promise<string> {

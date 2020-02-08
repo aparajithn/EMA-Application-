@@ -64,7 +64,7 @@ describe("Test sign-up failure from non-existent evaluation id", function() {
 
 describe("Test sign-up failure from passwords not matching", function() {
     it("should return sign-up failed from passwords not matching", function(done) {
-        let signUpComponent = new SignUpComponent(null, null);
+        let signUpComponent = new SignUpComponent(null, null, null);
 
         // invalid credentials
         signUpComponent.evaluationId = "8000";
@@ -81,7 +81,7 @@ describe("Test sign-up failure from passwords not matching", function() {
 
 describe("Test sign-up failure from no evaluation id", function() {
     it("should return sign-up failed from no evaluation id", function(done) {
-        let signUpComponent = new SignUpComponent(null, null);
+        let signUpComponent = new SignUpComponent(null, null, null);
 
         // invalid credentials
         signUpComponent.evaluationId = "";
@@ -98,7 +98,7 @@ describe("Test sign-up failure from no evaluation id", function() {
 
 describe("Test sign-up failure from no password", function() {
     it("should return sign-up failed from no password", function(done) {
-        let signUpComponent = new SignUpComponent(null, null);
+        let signUpComponent = new SignUpComponent(null, null, null);
 
         // invalid credentials
         signUpComponent.evaluationId = "8000";
@@ -115,7 +115,7 @@ describe("Test sign-up failure from no password", function() {
 
 describe("Test sign-up failure from invalid password", function() {
     it("should return sign-up failed from invalid password", function(done) {
-        let signUpComponent = new SignUpComponent(null, null);
+        let signUpComponent = new SignUpComponent(null, null, null);
 
         // invalid credentials
         signUpComponent.evaluationId = "8000";

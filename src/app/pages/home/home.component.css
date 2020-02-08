@@ -1,78 +1,12 @@
-.android-input-field
+.display-layout
 {
-
-    width: 85%;
-    background-color: #e3e3e3;
-    border-color: #bfbfbf;
-    border-width: 1;
-    padding: 10px 10px 0px 10px;
-    margin-top: 10;
-    border-radius: 30px;
+    vertical-align: center;
 }
 
-.ios-input-field
+.display-label
 {
-
-    width: 85%;
-    background-color: #e3e3e3;
-    border-color: #bfbfbf;
-    border-width: 1;
-    padding: 15 10 15 10;
-    margin-top: 10;
-    border-radius: 30px;
-}
-
-.logo
-{
-    margin: 40 0 20 0;
-}
-
-.form
-{
-    vertical-align: middle;
-}
-
-.signin-button
-{
-    width: 50%;
-    margin-top: 15;
-}
-
-.psu-logo
-{
-    vertical-align: bottom;
-    margin-bottom: 10;
-}
-
-.signup-routing-label
-{
-    font-size: 20;
+    font-size: 24;
     text-alignment: center;
-    color: blue;
-    margin-top: 10;
-}
-
-.cardStyle {
-    background-color: #035599;
-    color: rgb(237,237,237);
-}
-
-.h1{
-    font-size: 30;
-    color: #035599;
-}
-.h2{
-    font-size: 30;
-    color: rgb(237,237,237);
-}
-.h3{
-    font-size:14;
-    color: #035599;
-}
-
-.far {
-    font-family: "Font Awesome 5 Free", "fa-regular-400";
-    font-weight: 400;
-    font-size: 20;
-    color: #035599;
+    color: black;
+    margin-bottom: 30%;
 }
