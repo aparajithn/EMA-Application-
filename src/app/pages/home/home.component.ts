@@ -8,6 +8,8 @@ const appSettings = require("application-settings");
 
 import { HttpPostService } from "~/app/services/http-post.service";
 import {Page} from "ui/page";
+import {Survey} from "~/app/models/survey";
+import {Question} from "~/app/models/question";
 
 @Component({
     selector: "Home",
@@ -43,7 +45,36 @@ export class HomeComponent implements OnInit {
             )
             .subscribe(
             res => {
-                // save survey and give to user
+
+                this.display_text = "Survey received! Starting survey...";
+
+                // save survey
+
+                let res_questions = (<any>res);
+                let survey = Survey.getInstance();
+
+                // iterate through questions and add them to the survey singleton
+                for(let res_question of res_questions) {
+
+                    // create a new Question object and set its attributes based on the response
+                    let question = new Question(
+                        res_question.id,
+                        res_question.type,
+                        res_question.text,
+                        res_question.lower_bound,
+                        res_question.upper_bound,
+                        res_question.lb_desc,
+                        res_question.ub_desc
+                    );
+
+                    // add the question to the survey singleton
+                    survey.addQuestion(question);
+
+                    console.log(question);
+                }
+
+                // begin the survey
+
             },
             err => {
                 let error_text = (<any>err).error.text;
