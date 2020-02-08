@@ -74,8 +74,12 @@ export class HomeComponent implements OnInit {
                 }
 
                 // begin the survey
-
-            },
+                setTimeout(() =>
+                    {
+                        this.router.navigate(['/scaled-question']);
+                    },
+                    1000);
+                },
             err => {
                 let error_text = (<any>err).error.text;
                 let error_status = (<any>err).status;
