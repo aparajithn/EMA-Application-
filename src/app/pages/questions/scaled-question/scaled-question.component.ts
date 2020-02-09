@@ -5,6 +5,7 @@ import { registerElement } from 'nativescript-angular/element-registry';
 import { CardView } from '@nstudio/nativescript-cardview';
 import {Survey} from "~/app/models/survey";
 import {Question} from "~/app/models/question";
+import {device} from "platform";
 registerElement('CardView', () => CardView);
 
 @Component({
@@ -39,12 +40,12 @@ export class ScaledQuestionComponent implements OnInit  {
 
     onSliderValueChange(args) {
         let slider = <Slider>args.object;
-        console.log(`Slider new value ${args.value}`);
+        console.log(slider.value);
+        // if device is iOS, need to manually set anchor points
+        if(device.os === "iOS") {
+            slider.value = Math.floor(slider.value);
+        }
     }
-
-
-
-
 
 }
 
