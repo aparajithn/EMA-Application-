@@ -16,10 +16,10 @@
         <DockLayout dock="bottom" verticalAlignment="bottom">
             <DockLayout dock="bottom" height="70">
                 <DockLayout width="50%">
-                    <Button text="Previous" android:class="android-default-button prev-button" ios:class="ios-default-button prev-button "></Button>
+                    <Button text="Previous" [visibility]="this.prev_button_hidden ? 'hidden' : 'visible'" (tap)="previousButtonTapped()" android:class="android-default-button prev-button" ios:class="ios-default-button prev-button"></Button>
                 </DockLayout>
                 <DockLayout width="50%">
-                    <Button text="Next" android:class="android-default-button next-button" ios:class="ios-default-button next-button "></Button>
+                    <Button text="{{this.next_button_text}}" (tap)="nextButtonTapped()" android:class="android-default-button next-button" ios:class="ios-default-button next-button"></Button>
                 </DockLayout>
             </DockLayout>
         </DockLayout>
