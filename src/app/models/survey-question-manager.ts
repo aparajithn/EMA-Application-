@@ -45,7 +45,7 @@ export class SurveyQuestionManager {
         // increment question index then route to the question
         ++this._question_index;
         this.router.navigateByUrl('/buffer', {skipLocationChange: true}).then(()=>
-            this.router.navigate(["/scaled-question"]));
+            this.router.navigate([this.getUrlByType()]));
     }
 
     // route to previous question
@@ -53,7 +53,7 @@ export class SurveyQuestionManager {
         // decrement the question_index and route to previous question
         --this._question_index;
         this.router.navigateByUrl('/buffer', {skipLocationChange: true}).then(()=>
-            this.router.navigate(["/scaled-question"]));
+            this.router.navigate([this.getUrlByType()]));
     }
 
     public submitSurvey(): void {
@@ -70,5 +70,26 @@ export class SurveyQuestionManager {
             return_bool = true;
         }
         return return_bool;
+    }
+
+    private getUrlByType(): string {
+        let question_type: string = this.questions[this._question_index].type;
+        let return_url: string = "";
+
+        switch(question_type) {
+            case "Scaled":
+                return_url = "/scaled-question";
+                break;
+            case "Numeric":
+                // TODO: implement numeric question
+                break;
+            case "Time":
+                // TODO: implement time question
+                break;
+            case "Open-Ended":
+                // TODO: implement open-ended question
+        }
+
+        return return_url;
     }
 }
