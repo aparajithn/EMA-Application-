@@ -6,6 +6,7 @@ import { CardView } from '@nstudio/nativescript-cardview';
 import { SurveyQuestionManager } from "~/app/models/survey-question-manager";
 import { Question } from "~/app/models/question";
 import {device} from "platform";
+import * as dialogs from "ui/dialogs";
 registerElement('CardView', () => CardView);
 
 @Component({
@@ -65,8 +66,16 @@ export class ScaledQuestionComponent implements OnInit  {
     // route the user to the next question
     // NOTE: acts as the submit button if this is the last question
     nextButtonTapped(): void {
-        console.log("Next button tapped.");
-        this.survey_question_manager.nextQuestion();
+        if(this.survey_question_manager.isLastQuestion()) {
+            dialogs.alert({
+                title: "Survey complete",
+                message: "TODO: submit survey and go back to home page.",
+                okButtonText: "OK"
+            }).then(() => {})
+        }
+        else {
+            this.survey_question_manager.nextQuestion();
+        }
     }
 
     // route the user to the previous question

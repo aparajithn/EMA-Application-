@@ -42,9 +42,8 @@ export class SurveyQuestionManager {
     // route to next question
     public nextQuestion(): void {
         // increment question index then route to the question
-        console.log("made it here");
         ++this._question_index;
-        this.router.navigateByUrl('/', {skipLocationChange: true}).then(()=>
+        this.router.navigateByUrl('/buffer', {skipLocationChange: true}).then(()=>
             this.router.navigate(["/scaled-question"]));
     }
 
@@ -52,7 +51,7 @@ export class SurveyQuestionManager {
     public previousQuestion(): void {
         // decrement the question_index and route to previous question
         --this._question_index;
-        this.router.navigateByUrl('/', {skipLocationChange: true}).then(()=>
+        this.router.navigateByUrl('/buffer', {skipLocationChange: true}).then(()=>
             this.router.navigate(["/scaled-question"]));
     }
 
@@ -62,7 +61,7 @@ export class SurveyQuestionManager {
 
     public isLastQuestion(): boolean {
         let return_bool = false;
-        if(this.question_index == (this.questions.length)) {
+        if(this._question_index == (this.questions.length - 1)) {
             return_bool = true;
         }
         return return_bool;
