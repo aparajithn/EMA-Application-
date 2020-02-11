@@ -1,5 +1,6 @@
 import { Question } from "~/app/models/question";
 import {Router} from "@angular/router";
+import * as dialogs from "ui/dialogs";
 
 // singleton
 export class SurveyQuestionManager {
@@ -56,7 +57,11 @@ export class SurveyQuestionManager {
     }
 
     public submitSurvey(): void {
-        // TODO: implementation
+        dialogs.alert({
+            title: "Survey complete",
+            message: "TODO: submit survey and go back to home page.",
+            okButtonText: "OK"
+        }).then(() => {})
     }
 
     public isLastQuestion(): boolean {
