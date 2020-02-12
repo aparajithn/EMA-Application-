@@ -7,9 +7,9 @@ registerElement('CardView', () => CardView);
 const appSettings = require("application-settings");
 
 import { HttpPostService } from "~/app/services/http-post.service";
-import {Page} from "ui/page";
-import {Survey} from "~/app/models/survey";
-import {Question} from "~/app/models/question";
+import { Page } from "ui/page";
+import { SurveyQuestionManager } from "~/app/models/survey-question-manager";
+import { Question } from "~/app/models/question";
 
 @Component({
     selector: "Home",
@@ -20,6 +20,7 @@ import {Question} from "~/app/models/question";
 export class HomeComponent implements OnInit {
 
     display_text: string = "Looking for an available survey...";
+    survey_question_manager: SurveyQuestionManager;
 
     constructor(private router: Router,
                 private postService: HttpPostService,
@@ -51,7 +52,7 @@ export class HomeComponent implements OnInit {
                 // save survey
 
                 let res_questions = (<any>res);
-                let survey = Survey.getInstance();
+                this.survey_question_manager = SurveyQuestionManager.getInstance(this.router);
 
                 // iterate through questions and add them to the survey singleton
                 for(let res_question of res_questions) {
@@ -68,17 +69,18 @@ export class HomeComponent implements OnInit {
                     );
 
                     // add the question to the survey singleton
-                    survey.addQuestion(question);
+                    this.survey_question_manager.addQuestion(question);
 
                     console.log(question);
                 }
 
-                // begin the survey
+                // begin the survey with the first question
                 setTimeout(() =>
                     {
-                        this.router.navigate(['/scaled-question']);
+                        //this.router.navigate(['/scaled-question']);
+                        this.survey_question_manager.nextQuestion();
                     },
-                    1000);
+                    500);
                 },
             err => {
                 let error_text = (<any>err).error.text;

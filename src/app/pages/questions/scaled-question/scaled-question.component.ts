@@ -3,9 +3,11 @@ import { Router } from "@angular/router";
 import { Slider } from "tns-core-modules/ui/slider";
 import { registerElement } from 'nativescript-angular/element-registry';
 import { CardView } from '@nstudio/nativescript-cardview';
-import {Survey} from "~/app/models/survey";
-import {Question} from "~/app/models/question";
+import { SurveyQuestionManager } from "~/app/models/survey-question-manager";
+import { Question } from "~/app/models/question";
 import {device} from "platform";
+import * as dialogs from "ui/dialogs";
+import {QuestionComponentAc} from "~/app/pages/questions/question-component-ac";
 registerElement('CardView', () => CardView);
 
 @Component({
@@ -14,38 +16,40 @@ registerElement('CardView', () => CardView);
     styleUrls: ["./scaled-question.component.css"],
     templateUrl: "./scaled-question.component.html"
 })
-export class ScaledQuestionComponent implements OnInit  {
+export class ScaledQuestionComponent extends QuestionComponentAc implements OnInit  {
 
-    question: Question;
-    maxValue: number;
-    minValue: number;
-    text: string;
-    lb_desc: string;
-    up_desc: string;
+    slider_value: number = 0;
 
-    constructor(private router: Router) {
+    constructor(private _router: Router) {
+        super(_router);
     }
 
     ngOnInit(): void {
+        super.init();
+        if(this.question.response) {
+            this.slider_value = this.question.response;
+        }
+    }
 
-        // index temporarily hard-coded until factory set up
-        this.question = Survey.getInstance().getQuestionByIdx(0);
-
-        this.maxValue = this.question.upper_bound;
-        this.minValue = this.question.lower_bound;
-        this.text = this.question.text;
-        this.lb_desc = this.question.lb_desc;
-        this.up_desc = this.question.ub_desc;
+    saveResponse(): void {
+        this.question.response = this.slider_value;
+        console.log("Response recorded: " + this.question.response);
     }
 
     onSliderValueChange(args) {
         let slider = <Slider>args.object;
-        console.log(slider.value);
+
         // if device is iOS, need to manually set anchor points
         if(device.os === "iOS") {
-            slider.value = Math.floor(slider.value);
+            if(slider.value < (Math.floor(slider.value)+.5)) {
+                slider.value = Math.floor(slider.value);
+            }
+            else {
+                slider.value = Math.ceil(slider.value);
+            }
         }
-    }
 
+        this.slider_value = slider.value;
+    }
 }
 

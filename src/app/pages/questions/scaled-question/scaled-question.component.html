@@ -6,7 +6,7 @@
                 <label class = "h2" [text]='text' textWrap="true" margin = "10"></label>
             </CardView>
             <StackLayout marginLeft="15" marginRight="15">
-                <Slider [maxValue]='maxValue'  [minValue] ='minValue'  (valueChange)="onSliderValueChange($event)"></Slider>
+                <Slider [value]='slider_value' [maxValue]='maxValue'  [minValue] ='minValue'  (valueChange)="onSliderValueChange($event)"></Slider>
                 <DockLayout marginBottom="30">
                     <label dock="left" width="50%" class = "h4" [text] = 'lb_desc' textWrap = 'true'></label>
                     <label dock="right" width="50%" class ="h4" [text] = 'up_desc' textWrap = 'true' textAlignment="right"></label>
@@ -16,10 +16,10 @@
         <DockLayout dock="bottom" verticalAlignment="bottom">
             <DockLayout dock="bottom" height="70">
                 <DockLayout width="50%">
-                    <Button text="Previous" android:class="android-default-button prev-button" ios:class="ios-default-button prev-button "></Button>
+                    <Button text="Previous" [visibility]="prev_button_hidden ? 'hidden' : 'visible'" (tap)="previousButtonTapped()" android:class="android-default-button prev-button" ios:class="ios-default-button prev-button"></Button>
                 </DockLayout>
                 <DockLayout width="50%">
-                    <Button text="Next" android:class="android-default-button next-button" ios:class="ios-default-button next-button "></Button>
+                    <Button text="{{next_button_text}}" (tap)="nextButtonTapped()" android:class="android-default-button next-button" ios:class="ios-default-button next-button"></Button>
                 </DockLayout>
             </DockLayout>
         </DockLayout>
