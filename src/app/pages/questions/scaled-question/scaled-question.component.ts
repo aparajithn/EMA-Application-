@@ -41,7 +41,12 @@ export class ScaledQuestionComponent extends QuestionComponentAc implements OnIn
 
         // if device is iOS, need to manually set anchor points
         if(device.os === "iOS") {
-            slider.value = Math.floor(slider.value);
+            if(slider.value < (Math.floor(slider.value)+.5)) {
+                slider.value = Math.floor(slider.value);
+            }
+            else {
+                slider.value = Math.ceil(slider.value);
+            }
         }
 
         this.slider_value = slider.value;
