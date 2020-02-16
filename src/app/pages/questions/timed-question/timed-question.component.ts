@@ -3,6 +3,8 @@ import { Observable } from "tns-core-modules/data/observable";
 import { TimePicker } from "tns-core-modules/ui/time-picker";
 import { registerElement } from 'nativescript-angular/element-registry';
 import { CardView } from '@nstudio/nativescript-cardview';
+import {QuestionComponentAc} from "~/app/pages/questions/question-component-ac";
+import {Router} from "@angular/router";
 registerElement('CardView', () => CardView);
 const question = {
     id: 182,
@@ -19,17 +21,30 @@ const question = {
     styleUrls: ["./timed-question.component.css"],
     templateUrl: "./timed-question.component.html"
 })
-export class TimedQuestionComponent implements OnInit {
+export class TimedQuestionComponent extends QuestionComponentAc implements OnInit {
 
-    text:string = question.text1;
 
+    todayObj: Date = new Date();
+
+    constructor(private _router: Router) {
+        super(_router);
+    }
 
     ngOnInit(): void {
-
-
+        super.init();
+        if(this.question.response) {
+            this.todayObj = this.question.response
+        }
     }
+    //save response
+    saveResponse(): void {
+        this.question.response = this.todayObj;
+        console.log("Response recorded: " + this.question.response);
+    }
+
+
      onPickerLoaded(args) {
-        const timePicker: TimePicker = <TimePicker>args.object;
+        let timePicker = <TimePicker>args.object;
 
         // handling 'timeChange' event via code behind
         timePicker.on("timeChange", (argstm: any) => {

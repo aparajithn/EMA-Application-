@@ -1,11 +1,17 @@
-.cardStyle {
+.android-cardStyle {
     background-color: #035599;
     color: rgb(237,237,237);
     margin: 20 15 40 15;
     elevation: 40;
-    /*width: 350;*/
-    /*height: 350;*/
     radius: 40;
+}
+
+.ios-cardStyle {
+    background-color: #035599;
+    color: rgb(237,237,237);
+    margin: 20 15 40 15;
+    elevation: 40;
+    radius: 15;
 }
 
 .prev-button
@@ -14,7 +20,6 @@
     height: 50;
     horizontal-align: left;
     margin: 0 0 15 15;
-    /*margin: 0 30 0 15;*/
 }
 
 .next-button
@@ -23,5 +28,4 @@
     height: 50;
     horizontal-align: right;
     margin: 0 15 15 0;
-    /*margin: 0 15 0 30;*/
 }
