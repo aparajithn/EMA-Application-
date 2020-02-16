@@ -7,8 +7,7 @@ import { CardView } from '@nstudio/nativescript-cardview';
 import {fromObject} from "data/observable";
 import {QuestionComponentAc} from "~/app/pages/questions/question-component-ac";
 registerElement('CardView', () => CardView);
-const years = [1980, 1990, 2000, 2010, 2020];
-
+let i;
 
 @Component({
     selector: "NumericQuestion",
@@ -17,13 +16,18 @@ const years = [1980, 1990, 2000, 2010, 2020];
     templateUrl: "./numeric-question.component.html"
 })
 export class NumericQuestionComponent extends QuestionComponentAc implements OnInit {
-    selectedItem:Number = 0;
+    selectedItem = 0;
+    input = [];
 
     constructor(private _router: Router) {
         super(_router);
     }
     ngOnInit(): void {
         super.init();
+        for(i = this.minValue;i<=this.maxValue;i++){
+            this.input.concat(i);
+        }
+
         if(this.question.response) {
             this.selectedItem = this.question.response;
         }
@@ -38,7 +42,7 @@ export class NumericQuestionComponent extends QuestionComponentAc implements OnI
         const listPickerComponent = fargs.object;
         listPickerComponent.on("selectedIndexChange", (args: EventData) => {
             const picker = <ListPicker>args.object;
-            console.log(`index: ${picker.selectedIndex}; item" ${years[picker.selectedIndex]}`);
+            console.log(`index: ${picker.selectedIndex}; item" ${this.input[picker.selectedIndex]}`);
         });
     }
 }
