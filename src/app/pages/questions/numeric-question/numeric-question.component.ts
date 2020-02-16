@@ -6,6 +6,7 @@ import { registerElement } from 'nativescript-angular/element-registry';
 import { CardView } from '@nstudio/nativescript-cardview';
 import {fromObject} from "data/observable";
 import {QuestionComponentAc} from "~/app/pages/questions/question-component-ac";
+registerElement('CardView', () => CardView);
 const years = [1980, 1990, 2000, 2010, 2020];
 
 

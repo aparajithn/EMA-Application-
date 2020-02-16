@@ -84,7 +84,7 @@ export class SurveyQuestionManager {
                 // TODO: implement numeric question
                 break;
             case "Time":
-                // TODO: implement time question
+                return_url = "/timed-question";
                 break;
             case "Open-Ended":
                 // TODO: implement open-ended question
