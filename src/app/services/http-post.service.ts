@@ -11,7 +11,7 @@ export class HttpPostService {
         return this.http.post(/*url*/serverUrl, /*body*/data, /*options*/{ headers: options });
     }
 
-    private createRequestOptions() {
+    private createRequestOptions(): HttpHeaders {
         let headers = new HttpHeaders({
             "Content-Type": "application/json"
         });
