@@ -3,11 +3,8 @@ import { Router } from "@angular/router";
 import { Slider } from "tns-core-modules/ui/slider";
 import { registerElement } from 'nativescript-angular/element-registry';
 import { CardView } from '@nstudio/nativescript-cardview';
-import { SurveyQuestionManager } from "~/app/models/survey-question-manager";
-import { Question } from "~/app/models/question";
 import {device} from "platform";
-import * as dialogs from "ui/dialogs";
-import {QuestionComponentAc} from "~/app/pages/questions/question-component-ac";
+import {QuestionComponentAC} from "~/app/pages/questions/question-component-ac";
 registerElement('CardView', () => CardView);
 
 @Component({
@@ -16,7 +13,7 @@ registerElement('CardView', () => CardView);
     styleUrls: ["./scaled-question.component.css"],
     templateUrl: "./scaled-question.component.html"
 })
-export class ScaledQuestionComponent extends QuestionComponentAc implements OnInit  {
+export class ScaledQuestionComponent extends QuestionComponentAC implements OnInit  {
 
     slider_value: number = 0;
 
