@@ -75,53 +75,94 @@ export class SignUpComponent implements OnInit {
                     },
                     "https://psubehrendema.org/checkUser.php")
                 .subscribe(res => {
-                    let evalId_exists = (<any>res).exists;
-
-                    // if evaluationId does not exist alert user
-                    if(!evalId_exists) {
-                        dialogs.alert({
-                            title: "Unable to sign up",
-                            message: "Evaluation ID does not exist.",
-                            okButtonText: "OK"
-                        }).then(() => {})
-                        result_str = "Sign-up failed: Non-existent evaluation id";
-                    }
-                    // if evaluationId does exist, use firebase to create a user and nav back to sign in page
-                    else {
-                        firebase.createUser({
-                            email: this.evaluationId + "@ema.org",
-                            password: this.password1
-                        }).then(
-                            function (result) {
-                                result_str = "Sign-up succeeded";
-                                dialogs.alert({
-                                    title: "Sign up successful",
-                                    okButtonText: "OK"
-                                }).then(() => {
-                                    //class_scope.router.navigate(["/sign-in"]);
-                                })
-                            },
-                            function (error) {
-                                if (error.includes("The email address is already in use by another account.")) {
-                                    result_str = "Sign-up failed: Evaluation id already in use";
-                                    dialogs.alert({
-                                        title: "Unable to sign up",
-                                        message: "An error occurred while signing up",
-                                        okButtonText: "OK"
-                                    }).then(() => {})
-                                }
-                                else {
-                                    dialogs.alert({
-                                        title: "Unable to sign up",
-                                        message: "An error occurred while signing up",
-                                        okButtonText: "OK"
-                                    }).then(() => {})
-                                }
-                            }
-
-                        )
-                    }
+                    this.handleSignup((<any>res).exists, class_scope);
                 });
+        }
+
+        return result_str;
+    }
+
+    async handleSignup(evalId_exists: boolean, class_scope: any): Promise<string> {
+        let result_str = "";
+
+        if(!evalId_exists) {
+            dialogs.alert({
+                title: "Unable to sign up",
+                message: "Evaluation ID does not exist.",
+                okButtonText: "OK"
+            }).then(() => {})
+            result_str = "Sign-up failed: Non-existent evaluation id";
+        }
+        else {
+            console.log("here1");
+            firebase.createUser({
+                email: this.evaluationId + "@ema.org",
+                password: this.password1
+            }).then(
+                function (result) {
+                    this.handleFirebaseResponse(true, null, class_scope);
+
+                    // result_str = "Sign-up succeeded";
+                    // dialogs.alert({
+                    //     title: "Sign up successful",
+                    //     okButtonText: "OK"
+                    // }).then(() => {
+                    //     class_scope.router.navigate(["/sign-in"]);
+                    // })
+                },
+                function (error) {
+                    this.handleFirebaseResponse(false, true, null);
+                    // if (error.includes("The email address is already in use by another account.")) {
+                    //     result_str = "Sign-up failed: Evaluation id already in use";
+                    //     dialogs.alert({
+                    //         title: "Unable to sign up",
+                    //         message: "An error occurred while signing up",
+                    //         okButtonText: "OK"
+                    //     }).then(() => {})
+                    // }
+                    // else {
+                    //     dialogs.alert({
+                    //         title: "Unable to sign up",
+                    //         message: "An error occurred while signing up",
+                    //         okButtonText: "OK"
+                    //     }).then(() => {})
+                    // }
+                }
+            )
+        }
+
+        return result_str;
+    }
+
+    async handleFirebaseResponse(is_success: boolean, id_in_use: boolean, class_scope: any): Promise<string> {
+        let result_str = "";
+
+        // if successful signup
+        if(is_success) {
+            result_str = "Sign-up succeeded";
+            dialogs.alert({
+                title: "Sign up successful",
+                okButtonText: "OK"
+            }).then(() => {
+                class_scope.router.navigate(["/sign-in"]);
+            })
+        }
+        // if unsuccessful sign-up because evaluation id already in use
+        else if(id_in_use) {
+            result_str = "Sign-up failed: Evaluation id already in use";
+            dialogs.alert({
+                title: "Unable to sign up",
+                message: "An error occurred while signing up",
+                okButtonText: "OK"
+            }).then(() => {})
+        }
+        // if unsuccessful sign-up for any other reason
+        else {
+            dialogs.alert({
+                title: "Unable to sign up",
+                message: "An error occurred while signing up",
+                okButtonText: "OK"
+            }).then(() => {})
         }
 
         return result_str;
