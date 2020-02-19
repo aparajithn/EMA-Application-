@@ -1,11 +1,10 @@
-import {SurveyQuestionManager} from "~/app/models/survey-question-manager";
-import {Question} from "~/app/models/question";
 import {Router} from "@angular/router";
-import {Slider} from "ui/slider";
+import {SurveyHelper} from "~/app/models/survey-helper";
+import {Question} from "~/app/models/question";
 
-export abstract class QuestionComponentAc {
+export abstract class QuestionComponentAC {
 
-    survey_question_manager: SurveyQuestionManager;
+    survey_helper: SurveyHelper;
     question: Question;
 
     maxValue: number;
@@ -20,23 +19,39 @@ export abstract class QuestionComponentAc {
     protected constructor(private router: Router) {
     }
 
-    // Function to save responses to questions when the user leaves the question page.
-    // Will have different implementations for different types of questions.
+    //---------------------------------------------------------------
+    // Abstract function: saveResponse
+    // Purpose: To save the user-entered response to a particular
+    //              question to the survey manager.
+    // Inputs:  none
+    // Outputs: void
+    //
+    // NOTE: Will have different implementations for different types
+    //          of questions.
+    //---------------------------------------------------------------
     abstract saveResponse(): void;
 
-    // first function called when a question page is routed to
+    //---------------------------------------------------------------
+    // Function: init
+    // Purpose:  To initialize the elements of a question page.
+    // Inputs:   none
+    // Outputs:  void
+    //
+    // NOTE: This should be the first function called when a question
+    //          page is routed to.
+    //---------------------------------------------------------------
     init(): void {
 
-        this.survey_question_manager = SurveyQuestionManager.getInstance(this.router);
-        this.question = this.survey_question_manager.getCurrentQuestion();
+        this.survey_helper = new SurveyHelper(this.router);
+        this.question = this.survey_helper.getCurrentQuestion();
 
         // previous button should be hidden on first question
-        if(this.survey_question_manager.question_index == 0) {
+        if(this.survey_helper.survey_manager.question_index == 0) {
             this.prev_button_hidden = true;
         }
 
         // next button text should be "submit" if last question
-        if(this.survey_question_manager.isLastQuestion()) {
+        if(this.survey_helper.isLastQuestion()) {
             this.next_button_text = "Submit";
         }
 
@@ -48,26 +63,45 @@ export abstract class QuestionComponentAc {
         this.up_desc = this.question.ub_desc;
     }
 
-    // route the user to the next question
-    // NOTE: acts as the submit button if this is the last question
+    //---------------------------------------------------------------
+    // Function: nextButtonTapped
+    // Purpose:  To save the user's response and route the user to
+    //              the next question, or submit the survey if called
+    //              from the last question.
+    // Inputs:   none
+    // Outputs:  void
+    //
+    // NOTE: The next button's text will be "Next" for all questions
+    //          except for the last question, in which case the next
+    //          button's text will be "Submit". It is still the same
+    //          button in the code, so the logic for differentiating
+    //          the two is handled here.
+    //---------------------------------------------------------------
     nextButtonTapped(): void {
-        if(this.survey_question_manager.isLastQuestion()) {
-            this.survey_question_manager.submitSurvey();
+        if(this.survey_helper.isLastQuestion()) {
+            this.survey_helper.submitSurvey();
         }
         else {
             // save response
             this.saveResponse();
             // go to next question
-            this.survey_question_manager.nextQuestion();
+            this.survey_helper.gotoNextQuestion();
         }
     }
 
-    // route the user to the previous question
-    // NOTE: will not do anything if this is the first question
+    //---------------------------------------------------------------
+    // Function: previousButtonTapped
+    // Purpose:  To route the user to the previous question.
+    // Inputs:   none
+    // Outputs:  void
+    //
+    // NOTE: The previous button is disabled on the first survey
+    //          question page.
+    //---------------------------------------------------------------
     previousButtonTapped(): void {
         // save response
         this.saveResponse();
         // go to previous question
-        this.survey_question_manager.previousQuestion();
+        this.survey_helper.gotoPreviousQuestion();
     }
 }
