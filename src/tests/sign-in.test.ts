@@ -60,7 +60,7 @@ describe("Test sign-in failure from invalid password", function() {
 
         // invalid password
         signInComponent.evaluationId = "8000";
-        signInComponent.password = "123"; /* <6 characters */
+        signInComponent.password = "123"; // <6 characters
 
         signInComponent.signInButtonTapped()
             .then((result) => {
