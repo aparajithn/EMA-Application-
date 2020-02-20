@@ -4,7 +4,7 @@ import { Slider } from "tns-core-modules/ui/slider";
 import { registerElement } from 'nativescript-angular/element-registry';
 import { CardView } from '@nstudio/nativescript-cardview';
 import {device} from "platform";
-import {QuestionComponentAc} from "~/app/pages/questions/question-component-ac";
+import {QuestionComponentAC} from "~/app/pages/questions/question-component-ac";
 registerElement('CardView', () => CardView);
 import { TextField } from "tns-core-modules/ui/text-field";
 
@@ -14,7 +14,7 @@ import { TextField } from "tns-core-modules/ui/text-field";
     styleUrls: ["./openended-question.component.css"],
     templateUrl: "./openended-question.component.html"
 })
-export class OpenEndedQuestionComponent extends QuestionComponentAc implements OnInit  {
+export class OpenEndedQuestionComponent extends QuestionComponentAC implements OnInit  {
 
     input:string;
 

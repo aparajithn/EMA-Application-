@@ -5,7 +5,7 @@ import { ListPicker } from "tns-core-modules/ui/list-picker/list-picker";
 import { registerElement } from 'nativescript-angular/element-registry';
 import { CardView } from '@nstudio/nativescript-cardview';
 import {fromObject} from "data/observable";
-import {QuestionComponentAc} from "~/app/pages/questions/question-component-ac";
+import {QuestionComponentAC} from "~/app/pages/questions/question-component-ac";
 import {Question} from "~/app/models/question";
 registerElement('CardView', () => CardView);
 let i;
@@ -16,7 +16,7 @@ let i;
     styleUrls: ["./numeric-question.component.css"],
     templateUrl: "./numeric-question.component.html"
 })
-export class NumericQuestionComponent extends QuestionComponentAc implements OnInit {
+export class NumericQuestionComponent extends QuestionComponentAC implements OnInit {
     selectedItem:any;
     private input: Array<number>;
 

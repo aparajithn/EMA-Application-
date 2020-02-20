@@ -3,7 +3,7 @@ import { Observable } from "tns-core-modules/data/observable";
 import { TimePicker } from "tns-core-modules/ui/time-picker";
 import { registerElement } from 'nativescript-angular/element-registry';
 import { CardView } from '@nstudio/nativescript-cardview';
-import {QuestionComponentAc} from "~/app/pages/questions/question-component-ac";
+import {QuestionComponentAC} from "~/app/pages/questions/question-component-ac";
 import {Router} from "@angular/router";
 registerElement('CardView', () => CardView);
 const question = {
@@ -21,7 +21,7 @@ const question = {
     styleUrls: ["./timed-question.component.css"],
     templateUrl: "./timed-question.component.html"
 })
-export class TimedQuestionComponent extends QuestionComponentAc implements OnInit {
+export class TimedQuestionComponent extends QuestionComponentAC implements OnInit {
 
 
     todayObj: Date = new Date();

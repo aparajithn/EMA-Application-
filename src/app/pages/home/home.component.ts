@@ -8,8 +8,9 @@ const appSettings = require("application-settings");
 
 import { HttpPostService } from "~/app/services/http-post.service";
 import { Page } from "ui/page";
-import { SurveyQuestionManager } from "~/app/models/survey-question-manager";
+import { SurveyManager } from "~/app/models/survey-manager";
 import { Question } from "~/app/models/question";
+import {SurveyHelper} from "~/app/models/survey-helper";
 
 @Component({
     selector: "Home",
@@ -20,7 +21,7 @@ import { Question } from "~/app/models/question";
 export class HomeComponent implements OnInit {
 
     display_text: string = "Looking for an available survey...";
-    survey_question_manager: SurveyQuestionManager;
+    survey_helper: SurveyHelper;
 
     constructor(private router: Router,
                 private postService: HttpPostService,
@@ -52,7 +53,7 @@ export class HomeComponent implements OnInit {
                 // save survey
 
                 let res_questions = (<any>res);
-                this.survey_question_manager = SurveyQuestionManager.getInstance(this.router);
+                this.survey_helper = new SurveyHelper(this.router);
 
                 // iterate through questions and add them to the survey singleton
                 for(let res_question of res_questions) {
@@ -69,7 +70,7 @@ export class HomeComponent implements OnInit {
                     );
 
                     // add the question to the survey singleton
-                    this.survey_question_manager.addQuestion(question);
+                    this.survey_helper.addQuestion(question);
 
                     console.log(question);
                 }
@@ -78,7 +79,7 @@ export class HomeComponent implements OnInit {
                 setTimeout(() =>
                     {
                         //this.router.navigate(['/scaled-question']);
-                        this.survey_question_manager.nextQuestion();
+                        this.survey_helper.gotoNextQuestion();
                     },
                     500);
                 },
@@ -103,9 +104,5 @@ export class HomeComponent implements OnInit {
                     this.display_text = "An error occurred while retrieving available surveys. Please try again later.";
                 }
             })
-    }
-
-   routeSignUp(): void {
-        this.router.navigate(["/sign-up"]);
     }
 }
