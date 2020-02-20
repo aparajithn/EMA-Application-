@@ -45,7 +45,6 @@ export class NumericQuestionComponent extends QuestionComponentAC implements OnI
         const listPickerComponent = fargs.object;
         listPickerComponent.on("selectedIndexChange", (args: EventData) => {
             const picker = <ListPicker>args.object;
-            console.log(`ListPicker selected value: ${(<any>picker).selectedValue + 1}`);
             this.selectedItem= (<any>picker).selectedValue + 1;
 
         });

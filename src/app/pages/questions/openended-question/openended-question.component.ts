@@ -36,8 +36,7 @@ export class OpenEndedQuestionComponent extends QuestionComponentAC implements O
 
    onTextChanged(args){
        let textField = <TextField>args.object;
-        console.log(textField.text);
-        this.input = textField.text;
+       this.input = textField.text;
    }
 }
 
