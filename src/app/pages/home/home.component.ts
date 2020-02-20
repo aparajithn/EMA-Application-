@@ -26,6 +26,7 @@ export class HomeComponent implements OnInit {
     constructor(private router: Router,
                 private postService: HttpPostService,
                 private page: Page) {
+        this.survey_helper = new SurveyHelper(this.router);
     }
 
     ngOnInit(): void {
@@ -47,62 +48,70 @@ export class HomeComponent implements OnInit {
             )
             .subscribe(
             res => {
-
-                this.display_text = "Survey received! Starting survey...";
-
-                // save survey
-
-                let res_questions = (<any>res);
-                this.survey_helper = new SurveyHelper(this.router);
-
-                // iterate through questions and add them to the survey singleton
-                for(let res_question of res_questions) {
-
-                    // create a new Question object and set its attributes based on the response
-                    let question = new Question(
-                        res_question.id,
-                        res_question.type,
-                        res_question.text,
-                        res_question.lower_bound,
-                        res_question.upper_bound,
-                        res_question.lb_desc,
-                        res_question.ub_desc
-                    );
-
-                    // add the question to the survey singleton
-                    this.survey_helper.addQuestion(question);
-
-                    console.log(question);
-                }
-
-                // begin the survey with the first question
-                setTimeout(() =>
-                    {
-                        //this.router.navigate(['/scaled-question']);
-                        this.survey_helper.gotoNextQuestion();
-                    },
-                    500);
+                this.handleServerResponse(res, null, null);
                 },
             err => {
-                let error_text = (<any>err).error.text;
-                let error_status = (<any>err).status;
-
-                // if error is caused by no available surveys
-                if (error_text === "NO_AVAILABLE_SURVEY") {
-                    this.display_text = "There is not an available survey at this time.";
-                }
-                // if error is caused by server
-                else if (error_text === "ERROR") {
-                    this.display_text = "The server is currently down for maintenance.";
-                }
-                // unknown error
-                else if (error_status == 0) {
-                    this.display_text = "Cannot communicate with destination server at this time.";
-                }
-                // any other error encountered
-                else {
-                    this.display_text = "An error occurred while retrieving available surveys. Please try again later.";
-                }
+                this.handleServerResponse(null, (<any>err).error.text, (<any>err).status);
             })
+    }
+
+    async handleServerResponse(res: any, error_text: string, error_status: number): Promise<string> {
+        let result_str: string = "";
+
+        if (res) {
+            result_str = "Survey received";
+            this.display_text = "Survey received! Starting survey...";
+
+            // save survey
+            let res_questions = (<any>res);
+
+            // iterate through questions and add them to the survey singleton
+            for (let res_question of res_questions) {
+
+                // create a new Question object and set its attributes based on the response
+                let question = new Question(
+                    res_question.id,
+                    res_question.type,
+                    res_question.text,
+                    res_question.lower_bound,
+                    res_question.upper_bound,
+                    res_question.lb_desc,
+                    res_question.ub_desc
+                );
+
+                // add the question to the survey singleton
+                this.survey_helper.addQuestion(question);
+
+                console.log(question);
+            }
+
+            // begin the survey with the first question
+            setTimeout(() => {
+                this.survey_helper.gotoNextQuestion();
+                   },
+               500);
+        }
+        // if error is caused by no available surveys
+        else if (error_text === "NO_AVAILABLE_SURVEY") {
+            result_str = "No survey available";
+            this.display_text = "There is not an available survey at this time.";
+        }
+        // if error is caused by server
+        else if (error_text === "ERROR") {
+            result_str = "Server down for maintenance";
+            this.display_text = "The server is currently down for maintenance.";
+        }
+        // unknown error
+        else if (error_status == 0) {
+            result_str = "Cannot communicate with server";
+            this.display_text = "Cannot communicate with destination server at this time.";
+        }
+        // any other error encountered
+        else {
+            result_str = "Error occurred";
+            this.display_text = "An error occurred while retrieving available surveys. Please try again later.";
+        }
+
+        return result_str;
     }
 }
