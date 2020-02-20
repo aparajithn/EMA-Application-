@@ -7,7 +7,7 @@
             </CardView>
             <StackLayout marginLeft="15" marginRight="15">
                 <CardView dock="top" android:class="android-answer" ios:class="ios-answer">
-                    <TextField hint = "Enter your response" [text]='input' textWrap ="true" (textChange)="onTextChanged($event)"></TextField>
+                    <TextField hint = "Enter your response" [text]='input' textWrap ="true" ios:class="ios-textfield" (textChange)="onTextChanged($event)"></TextField>
                 </CardView>
             </StackLayout>
         </StackLayout>
