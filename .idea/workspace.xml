@@ -3,9 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="287f0a20-0e8d-4280-8ece-300c460008ae" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/home/home.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/home/home.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/home/home.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/home/home.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/home/home.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/home/home.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app-routing.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/pages/questions/numeric-question/numeric-question.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/questions/numeric-question/numeric-question.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/pages/questions/numeric-question/numeric-question.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/questions/numeric-question/numeric-question.component.ts" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -34,7 +34,7 @@
     <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
-    <property name="ts.external.directory.path" value="D:\Documents\Penn State\2019-2020\Fall 2019\SWENG 480\Project\EMA_App\EMA-Application-\node_modules\typescript\lib" />
+    <property name="ts.external.directory.path" value="C:\EMA-Application\EMA-Application-\node_modules\typescript\lib" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -108,6 +108,8 @@
       <workItem from="1574286196236" duration="4000000" />
       <workItem from="1575227051535" duration="343000" />
       <workItem from="1578325276084" duration="2833000" />
+      <workItem from="1581199778720" duration="5944000" />
+      <workItem from="1581797148686" duration="12669000" />
     </task>
     <servers />
   </component>

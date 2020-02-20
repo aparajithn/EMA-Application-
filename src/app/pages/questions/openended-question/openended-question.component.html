@@ -1,4 +1,4 @@
-<ActionBar title="Numeric Question"></ActionBar>
+<ActionBar title="Open Ended Question"></ActionBar>
 <ScrollView orientation="vertical">
     <DockLayout>
         <StackLayout dock="top">
@@ -6,7 +6,9 @@
                 <label class = "h2" [text]='text' textWrap="true" margin = "10"></label>
             </CardView>
             <StackLayout marginLeft="15" marginRight="15">
-                <ListPicker class = "picker" [items]='input' [selectedValue]='selectedItem' selectedIndex="0" (selectedIndexChange)="onListPickerLoaded($event)" ></ListPicker>
+                <CardView dock="top" android:class="android-answer" ios:class="ios-answer">
+                    <TextField hint = "Enter your response" [text]='input' textWrap ="true" (textChange)="onTextChanged($event)"></TextField>
+                </CardView>
             </StackLayout>
         </StackLayout>
         <DockLayout dock="bottom" verticalAlignment="bottom">
@@ -21,5 +23,3 @@
         </DockLayout>
     </DockLayout>
 </ScrollView>
-
-

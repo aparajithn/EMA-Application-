@@ -13,6 +13,22 @@
     elevation: 40;
     radius: 15;
 }
+.android-answer{
+    background-color: #bfbfbf;
+    color: #035599;
+    margin: 20 15 40 15;
+    elevation: 40;
+    radius: 15;
+
+}
+.ios-answer{
+    background-color: #bfbfbf;
+    color: #035599;
+    margin: 20 15 40 15;
+    elevation: 40;
+    radius: 15;
+
+}
 
 .prev-button
 {
@@ -28,9 +44,4 @@
     height: 50;
     horizontal-align: right;
     margin: 0 15 15 0;
-}
-.picker {
-    width: 200;
-    height: 100;
-    vertical-align: middle;
 }
