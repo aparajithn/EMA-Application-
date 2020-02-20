@@ -51,12 +51,12 @@ export abstract class QuestionComponentAc {
     // route the user to the next question
     // NOTE: acts as the submit button if this is the last question
     nextButtonTapped(): void {
+        // save response
+        this.saveResponse();
         if(this.survey_question_manager.isLastQuestion()) {
             this.survey_question_manager.submitSurvey();
         }
         else {
-            // save response
-            this.saveResponse();
             // go to next question
             this.survey_question_manager.nextQuestion();
         }

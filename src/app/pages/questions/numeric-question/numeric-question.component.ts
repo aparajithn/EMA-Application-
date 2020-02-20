@@ -6,6 +6,7 @@ import { registerElement } from 'nativescript-angular/element-registry';
 import { CardView } from '@nstudio/nativescript-cardview';
 import {fromObject} from "data/observable";
 import {QuestionComponentAc} from "~/app/pages/questions/question-component-ac";
+import {Question} from "~/app/models/question";
 registerElement('CardView', () => CardView);
 let i;
 
@@ -16,16 +17,18 @@ let i;
     templateUrl: "./numeric-question.component.html"
 })
 export class NumericQuestionComponent extends QuestionComponentAc implements OnInit {
-    selectedItem = 0;
-    input = [];
+    selectedItem:any;
+    private input: Array<number>;
 
     constructor(private _router: Router) {
         super(_router);
+        this.input = new Array<number>();
     }
     ngOnInit(): void {
         super.init();
+        //populate list picker fields
         for(i = this.minValue;i<=this.maxValue;i++){
-            this.input.concat(i);
+            this.input.push(i);
         }
 
         if(this.question.response) {
@@ -42,7 +45,9 @@ export class NumericQuestionComponent extends QuestionComponentAc implements OnI
         const listPickerComponent = fargs.object;
         listPickerComponent.on("selectedIndexChange", (args: EventData) => {
             const picker = <ListPicker>args.object;
-            console.log(`index: ${picker.selectedIndex}; item" ${this.input[picker.selectedIndex]}`);
+            console.log(`ListPicker selected value: ${(<any>picker).selectedValue + 1}`);
+            this.selectedItem= (<any>picker).selectedValue + 1;
+
         });
     }
 }

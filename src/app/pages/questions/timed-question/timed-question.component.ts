@@ -51,6 +51,7 @@ export class TimedQuestionComponent extends QuestionComponentAc implements OnIni
             // args is of type PropertyChangeData
             console.log("Picked TIME: ", argstm.value);
             console.log("Previous TIME: ", argstm.oldValue);
+            this.todayObj = argstm.value;
 
         });
     }
