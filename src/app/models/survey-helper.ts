@@ -31,13 +31,13 @@ export class SurveyHelper {
                 return_url = "/scaled-question";
                 break;
             case "Numeric":
-                // TODO: implement numeric question
+                return_url = "/numeric-question";
                 break;
             case "Time":
-                // TODO: implement time question
+                return_url = "/timed-question";
                 break;
             case "Open-Ended":
-                // TODO: implement open-ended question
+                return_url = "/openended-question";
         }
 
         return return_url;

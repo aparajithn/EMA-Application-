@@ -78,12 +78,12 @@ export abstract class QuestionComponentAC {
     //          the two is handled here.
     //---------------------------------------------------------------
     nextButtonTapped(): void {
+        // save response
+        this.saveResponse();
         if(this.survey_helper.isLastQuestion()) {
             this.survey_helper.submitSurvey();
         }
         else {
-            // save response
-            this.saveResponse();
             // go to next question
             this.survey_helper.gotoNextQuestion();
         }
