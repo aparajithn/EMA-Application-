@@ -89,8 +89,7 @@ export class SignInComponent implements OnInit {
                             title: "Unable to sign in",
                             message: "The password is invalid or the user does not have a password.",
                             okButtonText: "OK"
-                        }).then(() => {
-                        })
+                        }).then(() => {})
                     } else {
                         result_str = "Sign-in failed";
                     }
