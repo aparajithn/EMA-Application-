@@ -94,39 +94,22 @@ export class SignUpComponent implements OnInit {
             result_str = "Sign-up failed: Non-existent evaluation id";
         }
         else {
-            console.log("here1");
             firebase.createUser({
                 email: this.evaluationId + "@ema.org",
                 password: this.password1
             }).then(
                 function (result) {
-                    this.handleFirebaseResponse(true, null, class_scope);
-
-                    // result_str = "Sign-up succeeded";
-                    // dialogs.alert({
-                    //     title: "Sign up successful",
-                    //     okButtonText: "OK"
-                    // }).then(() => {
-                    //     class_scope.router.navigate(["/sign-in"]);
-                    // })
+                    // successful sign up
+                    class_scope.handleFirebaseResponse(true, null, class_scope);
                 },
                 function (error) {
-                    this.handleFirebaseResponse(false, true, null);
-                    // if (error.includes("The email address is already in use by another account.")) {
-                    //     result_str = "Sign-up failed: Evaluation id already in use";
-                    //     dialogs.alert({
-                    //         title: "Unable to sign up",
-                    //         message: "An error occurred while signing up",
-                    //         okButtonText: "OK"
-                    //     }).then(() => {})
-                    // }
-                    // else {
-                    //     dialogs.alert({
-                    //         title: "Unable to sign up",
-                    //         message: "An error occurred while signing up",
-                    //         okButtonText: "OK"
-                    //     }).then(() => {})
-                    // }
+                    let id_in_use: boolean = false;
+
+                    if (error.includes("The email address is already in use by another account.")) {
+                        id_in_use = true;
+                    }
+                    
+                    class_scope.handleFirebaseResponse(false, id_in_use, null);
                 }
             )
         }
@@ -152,7 +135,7 @@ export class SignUpComponent implements OnInit {
             result_str = "Sign-up failed: Evaluation id already in use";
             dialogs.alert({
                 title: "Unable to sign up",
-                message: "An error occurred while signing up",
+                message: "Evaluation ID already in use.",
                 okButtonText: "OK"
             }).then(() => {})
         }
