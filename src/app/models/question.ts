@@ -7,7 +7,7 @@ export class Question {
     private readonly _upper_bound: number;
     private readonly _lb_desc: string;
     private readonly _ub_desc: string;
-    private _response: any;
+    private _response: string;
 
     constructor(id: number,
                 type: string,

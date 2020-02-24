@@ -2,6 +2,10 @@ import {SurveyManager} from "~/app/models/survey-manager";
 import {Router} from "@angular/router";
 import {Question} from "~/app/models/question";
 import * as dialogs from "ui/dialogs";
+import {HttpPostService} from "~/app/services/http-post.service";
+import { TSMap } from "typescript-map"
+
+const appSettings = require("application-settings");
 
 export class SurveyHelper {
 
@@ -132,17 +136,78 @@ export class SurveyHelper {
     //              question responses to the server.
     // Inputs:   none
     // Outputs:  number
+    //
+    // Example JSON body for a survey:
+    //  {
+    //    "userID": 8000,
+    //    "deviceID": "1",
+    //    "survey":
+    //      {
+    //        "0":
+    //          {
+    //            "questionID": "233",
+    //            "response": "User response as string"
+    //          },
+    //        "1":
+    //          {
+    //            "questionID": "236",
+    //            "response": "Another user response as string"
+    //          }
+    //      }
+    //  }
     //---------------------------------------------------------------
-    public submitSurvey(): number {
+    public async submitSurvey(postService: HttpPostService): Promise<boolean> {
+        let class_scope: any = this;
+
+        // create a survey JSON object
+        let survey = new TSMap<string,Object>();
+
+        // construct each question and response into a JSON object and add to the survey
+        for(let counter:number = 0; counter < this.survey_manager.questions.length; ++counter) {
+            let question = new TSMap<string,string>();
+            question.set("questionID", this.survey_manager.questions[counter].id.toString());
+            question.set("response", this.survey_manager.questions[counter].response);
+            survey.set(counter.toString(), question.toJSON());
+        }
+
+        let data =
+            {
+                userID: +appSettings.getString("evaluationId"),
+                deviceID: "1",
+                survey: survey.toJSON()
+            };
+
+        console.log(data);
+        // send the request to the survey with the survey responses
+/*        postService
+            .postData(
+                { userID: +appSettings.getString("evaluationId"), // evaluation ID (int)
+                    // Due to the way this endpoint is set up, deviceID is not taken into
+                    //   account when submitting a survey. However, if it is set to "0",
+                    //   the request returns with an error. Therefor it has been hard-coded
+                    //   here as "1".
+                    deviceID: "1",
+                    survey:
+                },
+                "https://psubehrendema.org/checkUser.php")
+            .subscribe(res => {
+                // temporary dialog until submit put into place
+                dialogs.alert({
+                    message: "Your responses have been submitted.",
+                    okButtonText: "OK"
+                }).then(() => {})
+                class_scope.router.navigate(["/home"]);
+            });
+*/
+
 
         // temporary dialog until submit put into place
+        // dialogs.alert({
+        //     title: "Survey complete",
+        //     message: "TODO: submit survey and go back to home page.",
+        //     okButtonText: "OK"
+        // }).then(() => {})
 
-        dialogs.alert({
-            title: "Survey complete",
-            message: "TODO: submit survey and go back to home page.",
-            okButtonText: "OK"
-        }).then(() => {})
-
-        return 0;
+        return false;
     }
 }
