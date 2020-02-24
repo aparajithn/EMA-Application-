@@ -5,6 +5,8 @@ import { registerElement } from 'nativescript-angular/element-registry';
 import { CardView } from '@nstudio/nativescript-cardview';
 import {device} from "platform";
 import {QuestionComponentAC} from "~/app/pages/questions/question-component-ac";
+import {HttpPostService} from "~/app/services/http-post.service";
+import {toNumbers} from "@angular/compiler-cli/src/diagnostics/typescript_version";
 registerElement('CardView', () => CardView);
 
 @Component({
@@ -17,19 +19,20 @@ export class ScaledQuestionComponent extends QuestionComponentAC implements OnIn
 
     slider_value: number = 0;
 
-    constructor(private _router: Router) {
-        super(_router);
+    constructor(private _router: Router,
+                private _postService: HttpPostService) {
+        super(_router, _postService);
     }
 
     ngOnInit(): void {
         super.init();
         if(this.question.response) {
-            this.slider_value = this.question.response;
+            this.slider_value = +this.question.response;
         }
     }
 
     saveResponse(): void {
-        this.question.response = this.slider_value;
+        this.question.response = this.slider_value.toString();
         console.log("Response recorded: " + this.question.response);
     }
 

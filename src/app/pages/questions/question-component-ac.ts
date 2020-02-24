@@ -1,6 +1,7 @@
 import {Router} from "@angular/router";
 import {SurveyHelper} from "~/app/models/survey-helper";
 import {Question} from "~/app/models/question";
+import {HttpPostService} from "~/app/services/http-post.service";
 
 export abstract class QuestionComponentAC {
 
@@ -16,7 +17,8 @@ export abstract class QuestionComponentAC {
     prev_button_hidden: boolean = false;
     next_button_text: string = "Next";
 
-    protected constructor(private router: Router) {
+    protected constructor(private router: Router,
+                          private postService: HttpPostService) {
     }
 
     //---------------------------------------------------------------
@@ -81,7 +83,7 @@ export abstract class QuestionComponentAC {
         // save response
         this.saveResponse();
         if(this.survey_helper.isLastQuestion()) {
-            this.survey_helper.submitSurvey();
+            this.survey_helper.submitSurvey(this.postService);
         }
         else {
             // go to next question

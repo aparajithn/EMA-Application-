@@ -6,7 +6,7 @@
                 <label class = "h2" [text]='text' textWrap="true" margin = "10"></label>
             </CardView>
             <StackLayout marginLeft="15" marginRight="15">
-                <ListPicker class = "picker" [items]='input' [selectedValue]='selectedItem' selectedIndex="0" (selectedIndexChange)="onListPickerLoaded($event)" ></ListPicker>
+                <ListPicker class = "picker" [items]='list_values' [selectedIndex]='selectedIndex' selectedIndex="0" (selectedIndexChange)="onListPickerIndexChange($event, false)" ></ListPicker>
             </StackLayout>
         </StackLayout>
         <DockLayout dock="bottom" verticalAlignment="bottom">
