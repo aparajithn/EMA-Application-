@@ -184,30 +184,28 @@ export class SurveyHelper {
             .postData(data, "https://psubehrendema.org/setSurvey.php")
             .subscribe(
                 res => {
-                    console.log("Response: " + res);
+                    console.log("Response");
+                    console.log(res);
                 },
+                // The server responds with an error even when successfully submitted.
+                // Both success and failure are handled in the case of error response.
                 err => {
-                    console.log("Error: " + err);
-                    // temporary dialog until submit put into place
-                    if ((<any>err).error.text == "Responses stored successfully.\\n") {
-                        // display dialog
-                        dialogs.alert({
-                            message: "Your responses have been submitted.",
-                            okButtonText: "OK"
-                        }).then(() => {
-                        });
-                        // return to home page
-                        class_scope.router.navigate(["/home"]);
-                    } else {
-                        // display dialog
-                        dialogs.alert({
-                            message: "Unable to submit responses at this time. Please try again later.",
-                            okButtonText: "OK"
-                        }).then(() => {
-                        })
-                        // return to home page
-                        class_scope.router.navigate(["/home"]);
+                    let dialog_message: string = "Unable to submit responses at this time. Please try again later.";
+                    console.log("Error");
+                    console.log("'"+(<any>err).error.text + "'");
+
+                    if ((<any>err).error.text == "Responses stored successfully.\n") {
+                        dialog_message = "Your responses have been submitted!";
                     }
+
+                    // display dialog
+                    dialogs.alert({
+                        message: dialog_message,
+                        okButtonText: "OK"
+                    }).then(() => {
+                        // return to home page
+                        class_scope.router.navigate(["/home"]);
+                    });
                 }
             )
     }
