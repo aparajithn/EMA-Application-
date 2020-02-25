@@ -7,6 +7,7 @@ import {device} from "platform";
 import {QuestionComponentAC} from "~/app/pages/questions/question-component-ac";
 registerElement('CardView', () => CardView);
 import { TextField } from "tns-core-modules/ui/text-field";
+import {HttpPostService} from "~/app/services/http-post.service";
 
 @Component({
     selector: "OpenEnded",
@@ -16,10 +17,11 @@ import { TextField } from "tns-core-modules/ui/text-field";
 })
 export class OpenEndedQuestionComponent extends QuestionComponentAC implements OnInit  {
 
-    input:string;
+    input: string = "";
 
-    constructor(private _router: Router) {
-        super(_router);
+    constructor(private _router: Router,
+                private _postService: HttpPostService) {
+        super(_router, _postService);
     }
 
     ngOnInit(): void {

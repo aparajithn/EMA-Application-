@@ -30,6 +30,7 @@
         "reflect-metadata": "~0.1.8",
         "rxjs": "~6.3.0",
         "tns-core-modules": "~6.1.0",
+        "typescript-map": "0.0.7",
         "zone.js": "0.9.1"
     },
     "devDependencies": {

@@ -2,6 +2,10 @@ import {SurveyManager} from "~/app/models/survey-manager";
 import {Router} from "@angular/router";
 import {Question} from "~/app/models/question";
 import * as dialogs from "ui/dialogs";
+import {HttpPostService} from "~/app/services/http-post.service";
+import { TSMap } from "typescript-map"
+
+const appSettings = require("application-settings");
 
 export class SurveyHelper {
 
@@ -132,17 +136,77 @@ export class SurveyHelper {
     //              question responses to the server.
     // Inputs:   none
     // Outputs:  number
+    //
+    // Example JSON body for a survey:
+    //  {
+    //    "userID": 8000,
+    //    "deviceID": "1",
+    //    "survey":
+    //      {
+    //        "0":
+    //          {
+    //            "questionID": "233",
+    //            "response": "User response as string"
+    //          },
+    //        "1":
+    //          {
+    //            "questionID": "236",
+    //            "response": "Another user response as string"
+    //          }
+    //      }
+    //  }
     //---------------------------------------------------------------
-    public submitSurvey(): number {
+    public async submitSurvey(postService: HttpPostService): Promise<void> {
+        let class_scope: any = this;
 
-        // temporary dialog until submit put into place
+        // create a survey JSON object
+        let survey = new TSMap<string,Object>();
 
-        dialogs.alert({
-            title: "Survey complete",
-            message: "TODO: submit survey and go back to home page.",
-            okButtonText: "OK"
-        }).then(() => {})
+        // construct each question and response into a JSON object and add to the survey
+        for(let counter:number = 0; counter < this.survey_manager.questions.length; ++counter) {
+            let question = new TSMap<string,string>();
+            question.set("questionID", this.survey_manager.questions[counter].id.toString());
+            question.set("response", this.survey_manager.questions[counter].response);
+            survey.set(counter.toString(), question.toJSON());
+        }
 
-        return 0;
+        let data =
+            {
+                userID: +appSettings.getString("evaluationId"),
+                deviceID: "1",
+                survey: survey.toJSON()
+            };
+
+        console.log(data);
+
+        // send the request to the survey with the survey responses
+        postService
+            .postData(data, "https://psubehrendema.org/setSurvey.php")
+            .subscribe(
+                res => {
+                    console.log("Response");
+                    console.log(res);
+                },
+                // The server responds with an error even when successfully submitted.
+                // Both success and failure are handled in the case of error response.
+                err => {
+                    let dialog_message: string = "Unable to submit responses at this time. Please try again later.";
+                    console.log("Error");
+                    console.log("'"+(<any>err).error.text + "'");
+
+                    if ((<any>err).error.text == "Responses stored successfully.\n") {
+                        dialog_message = "Your responses have been submitted!";
+                    }
+
+                    // display dialog
+                    dialogs.alert({
+                        message: dialog_message,
+                        okButtonText: "OK"
+                    }).then(() => {
+                        // return to home page
+                        class_scope.router.navigate(["/home"]);
+                    });
+                }
+            )
     }
 }

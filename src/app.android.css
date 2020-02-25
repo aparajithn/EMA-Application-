@@ -1,0 +1,6 @@
+/* Import shared style rules */
+@import './app-common.css';
+
+*{
+    font-family: SF-Pro-Display-Semibold;
+}

@@ -7,6 +7,7 @@ import { CardView } from '@nstudio/nativescript-cardview';
 import {fromObject} from "data/observable";
 import {QuestionComponentAC} from "~/app/pages/questions/question-component-ac";
 import {Question} from "~/app/models/question";
+import {HttpPostService} from "~/app/services/http-post.service";
 registerElement('CardView', () => CardView);
 let i;
 
@@ -17,36 +18,32 @@ let i;
     templateUrl: "./numeric-question.component.html"
 })
 export class NumericQuestionComponent extends QuestionComponentAC implements OnInit {
-    selectedItem:any;
-    private input: Array<number>;
+    selectedIndex: number = 0;
+    private list_values: Array<number>;
 
-    constructor(private _router: Router) {
-        super(_router);
-        this.input = new Array<number>();
+    constructor(private _router: Router,
+                private _postService: HttpPostService) {
+        super(_router, _postService);
+        this.list_values = new Array<number>();
     }
     ngOnInit(): void {
         super.init();
         //populate list picker fields
         for(i = this.minValue;i<=this.maxValue;i++){
-            this.input.push(i);
+            this.list_values.push(i);
         }
-
-        if(this.question.response) {
-            this.selectedItem = this.question.response;
+        // set the initial list picker position if a response has already been recorded
+        if(this.question.response && (this.list_values.indexOf(+this.question.response) > -1)) {
+            this.selectedIndex = this.list_values.indexOf(+this.question.response);
         }
     }
 
     saveResponse(): void {
-        this.question.response = this.selectedItem;
-        console.log("Response recorded: " + this.question.response);
+        this.question.response = this.list_values[this.selectedIndex].toString();
     }
 
-    onListPickerLoaded(fargs) {
-        const listPickerComponent = fargs.object;
-        listPickerComponent.on("selectedIndexChange", (args: EventData) => {
-            const picker = <ListPicker>args.object;
-            this.selectedItem= (<any>picker).selectedValue + 1;
-
-        });
+    onListPickerIndexChange(args) {
+        let picker = <ListPicker>args.object;
+        this.selectedIndex = picker.selectedIndex;
     }
 }

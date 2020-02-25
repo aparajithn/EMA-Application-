@@ -1,9 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import * as dialogs from "ui/dialogs";
-import { device } from "tns-core-modules/platform";
 const firebase = require("nativescript-plugin-firebase");
-
 import { HttpPostService } from "~/app/services/http-post.service";
 import {Page} from "ui/page";
 
