@@ -1,6 +1,5 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-
 const appSettings = require("application-settings");
 const firebase = require("nativescript-plugin-firebase");
 import * as dialogs from "tns-core-modules/ui/dialogs";

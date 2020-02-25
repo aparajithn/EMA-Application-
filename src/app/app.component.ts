@@ -1,5 +1,6 @@
 import {Component, OnInit} from "@angular/core";
 import {Router} from "@angular/router";
+import * as application from "tns-core-modules/application";
 
 const appSettings = require("application-settings");
 const firebase = require("nativescript-plugin-firebase");
@@ -32,5 +33,12 @@ export class AppComponent implements OnInit{
         if(appSettings.getString("evaluationId") != null) {
             this.router.navigate(["/home"]);
         }
+
+        // disable android back button
+        application.android.on(application.AndroidApplication.activityBackPressedEvent, (args: any) => {
+            args.cancel = true;
+        });
+
+
     }
 }
