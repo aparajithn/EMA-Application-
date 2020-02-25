@@ -156,7 +156,7 @@ export class SurveyHelper {
     //      }
     //  }
     //---------------------------------------------------------------
-    public async submitSurvey(postService: HttpPostService): Promise<boolean> {
+    public async submitSurvey(postService: HttpPostService): Promise<void> {
         let class_scope: any = this;
 
         // create a survey JSON object
@@ -178,36 +178,37 @@ export class SurveyHelper {
             };
 
         console.log(data);
+
         // send the request to the survey with the survey responses
-/*        postService
-            .postData(
-                { userID: +appSettings.getString("evaluationId"), // evaluation ID (int)
-                    // Due to the way this endpoint is set up, deviceID is not taken into
-                    //   account when submitting a survey. However, if it is set to "0",
-                    //   the request returns with an error. Therefor it has been hard-coded
-                    //   here as "1".
-                    deviceID: "1",
-                    survey:
+        postService
+            .postData(data, "https://psubehrendema.org/setSurvey.php")
+            .subscribe(
+                res => {
+                    console.log("Response: " + res);
                 },
-                "https://psubehrendema.org/checkUser.php")
-            .subscribe(res => {
-                // temporary dialog until submit put into place
-                dialogs.alert({
-                    message: "Your responses have been submitted.",
-                    okButtonText: "OK"
-                }).then(() => {})
-                class_scope.router.navigate(["/home"]);
-            });
-*/
-
-
-        // temporary dialog until submit put into place
-        // dialogs.alert({
-        //     title: "Survey complete",
-        //     message: "TODO: submit survey and go back to home page.",
-        //     okButtonText: "OK"
-        // }).then(() => {})
-
-        return false;
+                err => {
+                    console.log("Error: " + err);
+                    // temporary dialog until submit put into place
+                    if ((<any>err).error.text == "Responses stored successfully.\\n") {
+                        // display dialog
+                        dialogs.alert({
+                            message: "Your responses have been submitted.",
+                            okButtonText: "OK"
+                        }).then(() => {
+                        });
+                        // return to home page
+                        class_scope.router.navigate(["/home"]);
+                    } else {
+                        // display dialog
+                        dialogs.alert({
+                            message: "Unable to submit responses at this time. Please try again later.",
+                            okButtonText: "OK"
+                        }).then(() => {
+                        })
+                        // return to home page
+                        class_scope.router.navigate(["/home"]);
+                    }
+                }
+            )
     }
 }
