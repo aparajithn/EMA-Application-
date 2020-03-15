@@ -1,0 +1,32 @@
+<ActionBar title="Timed Question">
+    <!--Hide ios back button-->
+    <NavigationButton visibility="collapsed"></NavigationButton>
+</ActionBar>
+<ScrollView orientation="vertical">
+    <DockLayout>
+        <StackLayout dock="top">
+            <CardView dock="top" android:class="android-cardStyle" ios:class="ios-cardStyle">
+                <label class = "h2" [text]='text' textWrap="true" margin = "10"></label>
+            </CardView>
+            <StackLayout marginLeft="15" marginRight="15">
+                <TimePicker hour="10" minute="25"
+                            [time]='todayObj'
+                (timeChange)="onPickerLoaded($event)"
+                class="m-15">
+                </TimePicker>
+            </StackLayout>
+        </StackLayout>
+            <DockLayout dock="bottom" verticalAlignment="bottom">
+                <DockLayout dock="bottom" height="70">
+                    <DockLayout width="50%">
+                        <Button text="Previous" [visibility]="prev_button_hidden ? 'hidden' : 'visible'" (tap)="previousButtonTapped()" android:class="android-default-button prev-button" ios:class="ios-default-button prev-button"></Button>
+                    </DockLayout>
+                    <DockLayout width="50%">
+                        <Button text="{{next_button_text}}" (tap)="nextButtonTapped()" android:class="android-default-button next-button" ios:class="ios-default-button next-button"></Button>
+                    </DockLayout>
+                </DockLayout>
+            </DockLayout>
+    </DockLayout>
+</ScrollView>
+
+

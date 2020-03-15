@@ -1,8 +1,13 @@
 import { SignInComponent} from "~/app/pages/sign-in/sign-in.component";
+import { Router } from "@angular/router";
 
 describe("Test sign-in success", function() {
+
+    let router = jasmine.createSpyObj("Router", ["navigate"]);
+
     it("should return sign-in succeeded", function(done) {
-        let signInComponent = new SignInComponent(null);
+
+        let signInComponent = new SignInComponent(router, null);
 
         // valid credentials
         signInComponent.evaluationId = "8000";
@@ -18,7 +23,8 @@ describe("Test sign-in success", function() {
 
 describe("Test sign-in failure from invalid evaluation id", function() {
     it("should return sign-in failed invalid evaluation id", function (done) {
-        let signInComponent = new SignInComponent(null);
+
+        let signInComponent = new SignInComponent(null, null);
 
         // invalid evaluation ID
         signInComponent.evaluationId = "0000";
@@ -34,7 +40,7 @@ describe("Test sign-in failure from invalid evaluation id", function() {
 
 describe("Test sign-in failure from incorrect password", function() {
     it("should return sign-in failed incorrect password", function (done) {
-        let signInComponent = new SignInComponent(null);
+        let signInComponent = new SignInComponent(null, null);
 
         // incorrect password
         signInComponent.evaluationId = "8000";
@@ -50,11 +56,11 @@ describe("Test sign-in failure from incorrect password", function() {
 
 describe("Test sign-in failure from invalid password", function() {
     it("should return sign-in failed invalid password", function (done) {
-        let signInComponent = new SignInComponent(null);
+        let signInComponent = new SignInComponent(null, null);
 
         // invalid password
         signInComponent.evaluationId = "8000";
-        signInComponent.password = "123"; /* <6 characters */
+        signInComponent.password = "123"; // <6 characters
 
         signInComponent.signInButtonTapped()
             .then((result) => {
@@ -66,7 +72,7 @@ describe("Test sign-in failure from invalid password", function() {
 
 describe("Test sign-in failure from no evaluation id", function() {
     it("should return sign-in failed no evaluation id", function (done) {
-        let signInComponent = new SignInComponent(null);
+        let signInComponent = new SignInComponent(null, null);
 
         // invalid password
         signInComponent.evaluationId = "";
@@ -82,7 +88,7 @@ describe("Test sign-in failure from no evaluation id", function() {
 
 describe("Test sign-in failure from no password", function() {
     it("should return sign-in failed no password", function (done) {
-        let signInComponent = new SignInComponent(null);
+        let signInComponent = new SignInComponent(null, null);
 
         // invalid password
         signInComponent.evaluationId = "8000";

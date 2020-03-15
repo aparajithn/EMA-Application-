@@ -1,0 +1,50 @@
+.android-cardStyle {
+    background-color: #035599;
+    color: rgb(237,237,237);
+    margin: 20 15 40 15;
+    elevation: 40;
+    radius: 40;
+}
+
+.ios-cardStyle {
+    background-color: #035599;
+    color: rgb(237,237,237);
+    margin: 20 15 40 15;
+    elevation: 40;
+    radius: 15;
+}
+.android-answer{
+    background-color: #bfbfbf;
+    color: #035599;
+    margin: 20 15 40 15;
+    elevation: 40;
+    radius: 15;
+
+}
+.ios-answer{
+    background-color: #bfbfbf;
+    color: #035599;
+    margin: 20 15 40 15;
+    elevation: 40;
+    radius: 15;
+}
+
+.ios-textfield {
+    margin: 10 5 10 5;
+}
+
+.prev-button
+{
+    width: 50%;
+    height: 50;
+    horizontal-align: left;
+    margin: 0 0 15 15;
+}
+
+.next-button
+{
+    width: 50%;
+    height: 50;
+    horizontal-align: right;
+    margin: 0 15 15 0;
+}
