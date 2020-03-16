@@ -58,6 +58,8 @@ export class HomeComponent implements OnInit {
     async handleServerResponse(res: any, error_text: string, error_status: number): Promise<string> {
         let result_str: string = "";
 
+        console.log(error_text);
+
         if (res) {
             result_str = "Survey received";
             this.display_text = "Survey received! Starting survey...";
