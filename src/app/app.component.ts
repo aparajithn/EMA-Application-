@@ -2,6 +2,8 @@ import {Component, OnInit} from "@angular/core";
 import {Router} from "@angular/router";
 import * as application from "tns-core-modules/application";
 import * as firebase from 'nativescript-plugin-firebase';
+import {registerForPushNotifications} from "nativescript-plugin-firebase";
+import {Page} from "ui/page";
 
 const appSettings = require("application-settings");
 
@@ -12,12 +14,14 @@ const appSettings = require("application-settings");
 })
 export class AppComponent implements OnInit{
 
-    constructor(private router: Router) {
+    constructor(private router: Router,
+                private page: Page) {
     }
 
     ngOnInit() {
 
         firebase.init({
+
             showNotifications: true,
             showNotificationsWhenInForeground: true,
 
@@ -38,6 +42,9 @@ export class AppComponent implements OnInit{
             }
         );
 
+        firebase.registerForPushNotifications({onPushTokenReceivedCallback: (token: string):
+            void => {console.log("Firebase plugin received a push token: " + token); }});
+
         firebase.getCurrentPushToken().then(function(token) {
             console.log("token: " + token);
         });
@@ -52,7 +59,5 @@ export class AppComponent implements OnInit{
         application.android.on(application.AndroidApplication.activityBackPressedEvent, (args: any) => {
             args.cancel = true;
         });
-
-
     }
 }
