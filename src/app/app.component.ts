@@ -2,8 +2,6 @@ import {Component, OnInit} from "@angular/core";
 import {Router} from "@angular/router";
 import * as application from "tns-core-modules/application";
 import * as firebase from 'nativescript-plugin-firebase';
-import {registerForPushNotifications} from "nativescript-plugin-firebase";
-import {Page} from "ui/page";
 
 const appSettings = require("application-settings");
 
@@ -14,8 +12,7 @@ const appSettings = require("application-settings");
 })
 export class AppComponent implements OnInit{
 
-    constructor(private router: Router,
-                private page: Page) {
+    constructor(private router: Router) {
     }
 
     ngOnInit() {
