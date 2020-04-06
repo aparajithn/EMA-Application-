@@ -33,7 +33,14 @@ export class HomeComponent implements OnInit {
 
     ngOnInit(): void {
 
+        console.log("INIT HOME");
+
         this.page.actionBarHidden = true;
+
+        this.checkForSurvey();
+    }
+
+    checkForSurvey(): void {
 
         // Send request to the server to check for available survey
         this.postService
@@ -49,12 +56,12 @@ export class HomeComponent implements OnInit {
                 "https://psubehrendema.org/getSurvey.php"
             )
             .subscribe(
-            res => {
-                this.handleServerResponse(res, null, null);
+                res => {
+                    this.handleServerResponse(res, null, null);
                 },
-            err => {
-                this.handleServerResponse(null, (<any>err).error.text, (<any>err).status);
-            })
+                err => {
+                    this.handleServerResponse(null, (<any>err).error.text, (<any>err).status);
+                })
     }
 
     async handleServerResponse(res: any, error_text: string, error_status: number): Promise<string> {
