@@ -1,4 +1,5 @@
-import {Component, OnInit} from "@angular/core";
+import {Component} from "@angular/core";
+import {Page} from "ui/page";
 
 @Component({
     selector: "Buffer",
@@ -6,4 +7,11 @@ import {Component, OnInit} from "@angular/core";
     styleUrls: ["./buffer.component.css"],
     templateUrl: "./buffer.component.html"
 })
-export class BufferComponent {}
+export class BufferComponent {
+
+    constructor(private page: Page) {
+        // disable back swipe navigation for ios
+        this.page.enableSwipeBackNavigation = false;
+    }
+
+}

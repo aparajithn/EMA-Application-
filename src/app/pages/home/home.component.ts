@@ -8,7 +8,6 @@ const appSettings = require("application-settings");
 
 import { HttpPostService } from "~/app/services/http-post.service";
 import { Page } from "ui/page";
-import { SurveyManager } from "~/app/models/survey-manager";
 import { Question } from "~/app/models/question";
 import {SurveyHelper} from "~/app/models/survey-helper";
 
@@ -27,6 +26,9 @@ export class HomeComponent implements OnInit {
                 private postService: HttpPostService,
                 private page: Page) {
         this.survey_helper = new SurveyHelper(this.router);
+
+        // disable back swipe navigation for ios
+        this.page.enableSwipeBackNavigation = false;
     }
 
     ngOnInit(): void {
@@ -57,6 +59,8 @@ export class HomeComponent implements OnInit {
 
     async handleServerResponse(res: any, error_text: string, error_status: number): Promise<string> {
         let result_str: string = "";
+
+        console.log(error_text);
 
         if (res) {
             result_str = "Survey received";

@@ -2,7 +2,7 @@
     "nativescript": {
         "id": "org.nativescript.EMAmobile",
         "tns-ios": {
-            "version": "6.1.0"
+            "version": "6.1.1"
         },
         "tns-android": {
             "version": "6.1.2"

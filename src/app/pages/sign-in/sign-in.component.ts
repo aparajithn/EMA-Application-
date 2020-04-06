@@ -1,7 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
+import { HttpPostService } from "~/app/services/http-post.service";
 const appSettings = require("application-settings");
-const firebase = require("nativescript-plugin-firebase");
+import * as firebase from 'nativescript-plugin-firebase';
 import * as dialogs from "tns-core-modules/ui/dialogs";
 import {Page} from "ui/page";
 
@@ -17,7 +18,8 @@ export class SignInComponent implements OnInit {
     password : string = "";
 
     constructor(private router: Router,
-                private page: Page) {
+                private page: Page,
+                private postService: HttpPostService) {
     }
 
     ngOnInit(): void {
@@ -52,6 +54,13 @@ export class SignInComponent implements OnInit {
             }).then(() => {})
         }
         else {
+            let firebasePushToken = "";
+            // get firebase (push) notification token
+            firebase.getCurrentPushToken().then(function(token) {
+                console.log("token: " + token);
+                firebasePushToken = token;
+            });
+
             await firebase.login(
                 {
                     type: firebase.LoginType.PASSWORD,
@@ -67,7 +76,31 @@ export class SignInComponent implements OnInit {
                     // save evaluation id to local data under name "evaluationId"
                     appSettings.setString("evaluationId", this.evaluationId);
 
-                    this.router.navigate(["/home"]);
+                    // save firebase notification token to server
+                    this.postService
+                        .postData(
+                            { userID: +this.evaluationId, // evaluation ID (int)
+                                deviceID: "0",     // device ID
+                                notificationToken: firebasePushToken,     // firebase (push) notification token
+                                firebaseUserToken: "0"      // firebase user token
+                            },
+                            "https://psubehrendema.org/setNotificationToken.php")
+                        .subscribe(
+                            res => {
+                            },
+                            err => {
+                                console.log(err);
+                                if((<any>err).error.text == "SUCCESSFULLY STORED NOTIFICATION TOKEN\n") {
+                                    this.router.navigate(["/home"]);
+                                }
+                                else {
+                                    dialogs.alert({
+                                        title: "Unable to sign in",
+                                        message: "An error occurred.",
+                                        okButtonText: "OK"
+                                    }).then(() => {})
+                                }
+                            });
                 })
                 .catch(error => {
                     console.log(error);
