@@ -16,6 +16,7 @@ export class SignInComponent implements OnInit {
 
     evaluationId: string = "";
     password : string = "";
+    isBusy: boolean = false;
 
     constructor(private router: Router,
                 private page: Page,
@@ -54,6 +55,7 @@ export class SignInComponent implements OnInit {
             }).then(() => {})
         }
         else {
+            this.isBusy = true;
             let firebasePushToken = "";
             // get firebase (push) notification token
             firebase.getCurrentPushToken().then(function(token) {
@@ -91,9 +93,11 @@ export class SignInComponent implements OnInit {
                             err => {
                                 console.log(err);
                                 if((<any>err).error.text == "SUCCESSFULLY STORED NOTIFICATION TOKEN\n") {
+                                    this.isBusy = false;
                                     this.router.navigate(["/home"]);
                                 }
                                 else {
+                                    this.isBusy = false;
                                     dialogs.alert({
                                         title: "Unable to sign in",
                                         message: "An error occurred.",
@@ -103,6 +107,7 @@ export class SignInComponent implements OnInit {
                             });
                 })
                 .catch(error => {
+                    this.isBusy = false;
                     console.log(error);
                     // if evaluation ID not found
                     if (error.includes('There is no user record corresponding to this identifier. The user may have been deleted.')) {
