@@ -9,4 +9,9 @@
     text-alignment: center;
     color: black;
     margin-bottom: 30%;
+    width: 95%;
+}
+
+.refresh-button {
+    width: 50%;
 }
