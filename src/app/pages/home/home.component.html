@@ -1,4 +1,7 @@
-<StackLayout class="display-layout">
-    <Label text="{{this.display_text}}" id="display text" class="display-label" textWrap="true"></Label>
-    <Button text="Refresh" (tap)="checkForSurvey()" android:class="android-default-button refresh-button" ios:class="ios-default-button refresh-button"></Button>
-</StackLayout>
+<GridLayout rows="*">
+    <StackLayout row="0" class="display-layout">
+        <Label text="{{this.display_text}}" id="display text" class="display-label" textWrap="true"></Label>
+        <Button text="Refresh" (tap)="checkForSurvey()" android:class="android-default-button refresh-button" ios:class="ios-default-button refresh-button"></Button>
+    </StackLayout>
+    <ActivityIndicator rowSpan="1" [busy]="isBusy" color="#035599" width="100" height="100"></ActivityIndicator>
+</GridLayout>

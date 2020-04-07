@@ -21,6 +21,7 @@ export class HomeComponent implements OnInit {
 
     display_text: string = "Looking for an available survey...";
     survey_helper: SurveyHelper;
+    isBusy: boolean = false;
 
     constructor(private router: Router,
                 private postService: HttpPostService,
@@ -41,6 +42,8 @@ export class HomeComponent implements OnInit {
     }
 
     checkForSurvey(): void {
+
+        this.isBusy = true;
 
         // Send request to the server to check for available survey
         this.postService
@@ -66,6 +69,8 @@ export class HomeComponent implements OnInit {
 
     async handleServerResponse(res: any, error_text: string, error_status: number): Promise<string> {
         let result_str: string = "";
+
+        this.isBusy = false;
 
         console.log(error_text);
 
