@@ -208,5 +208,7 @@ export class SurveyHelper {
                     });
                 }
             )
+        // after the survey has been submitted, reset the survey instance
+        SurveyManager.resetInstance();
     }
 }
