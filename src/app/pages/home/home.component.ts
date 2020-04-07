@@ -8,7 +8,6 @@ const appSettings = require("application-settings");
 
 import { HttpPostService } from "~/app/services/http-post.service";
 import { Page } from "ui/page";
-import { SurveyManager } from "~/app/models/survey-manager";
 import { Question } from "~/app/models/question";
 import {SurveyHelper} from "~/app/models/survey-helper";
 
@@ -22,16 +21,29 @@ export class HomeComponent implements OnInit {
 
     display_text: string = "Looking for an available survey...";
     survey_helper: SurveyHelper;
+    isBusy: boolean = false;
 
     constructor(private router: Router,
                 private postService: HttpPostService,
                 private page: Page) {
         this.survey_helper = new SurveyHelper(this.router);
+
+        // disable back swipe navigation for ios
+        this.page.enableSwipeBackNavigation = false;
     }
 
     ngOnInit(): void {
 
+        console.log("INIT HOME");
+
         this.page.actionBarHidden = true;
+
+        this.checkForSurvey();
+    }
+
+    checkForSurvey(): void {
+
+        this.isBusy = true;
 
         // Send request to the server to check for available survey
         this.postService
@@ -47,16 +59,20 @@ export class HomeComponent implements OnInit {
                 "https://psubehrendema.org/getSurvey.php"
             )
             .subscribe(
-            res => {
-                this.handleServerResponse(res, null, null);
+                res => {
+                    this.handleServerResponse(res, null, null);
                 },
-            err => {
-                this.handleServerResponse(null, (<any>err).error.text, (<any>err).status);
-            })
+                err => {
+                    this.handleServerResponse(null, (<any>err).error.text, (<any>err).status);
+                })
     }
 
     async handleServerResponse(res: any, error_text: string, error_status: number): Promise<string> {
         let result_str: string = "";
+
+        this.isBusy = false;
+
+        console.log(error_text);
 
         if (res) {
             result_str = "Survey received";

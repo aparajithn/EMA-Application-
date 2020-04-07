@@ -1,9 +1,9 @@
 import {Component, OnInit} from "@angular/core";
 import {Router} from "@angular/router";
 import * as application from "tns-core-modules/application";
+import * as firebase from 'nativescript-plugin-firebase';
 
 const appSettings = require("application-settings");
-const firebase = require("nativescript-plugin-firebase");
 
 @Component({
     selector: "ns-app",
@@ -16,17 +16,35 @@ export class AppComponent implements OnInit{
     }
 
     ngOnInit() {
+
         firebase.init({
-            // Optionally pass in properties for database, authentication and cloud messaging,
-            // see their respective docs.
+
+            showNotifications: true,
+            showNotificationsWhenInForeground: true,
+
+            onPushTokenReceivedCallback: (token) => {
+                console.log('[Firebase] onPushTokenReceivedCallback:', { token });
+            },
+
+            onMessageReceivedCallback: (message: firebase.Message) => {
+                console.log('[Firebase] onMessageReceivedCallback:', { message });
+            }
+
         }).then(
             () => {
-                console.log("firebase.init done");
+                console.log('[Firebase] Initialized');
             },
             error => {
-                console.log(`firebase.init error: ${error}`);
+                console.log('[Firebase] Initialize', { error });
             }
         );
+
+        firebase.registerForPushNotifications({onPushTokenReceivedCallback: (token: string):
+            void => {console.log("Firebase plugin received a push token: " + token); }});
+
+        firebase.getCurrentPushToken().then(function(token) {
+            console.log("token: " + token);
+        });
 
         // if the user has previously signed in to the app with an evaluation id
         // route them directly to the home page
@@ -38,7 +56,5 @@ export class AppComponent implements OnInit{
         application.android.on(application.AndroidApplication.activityBackPressedEvent, (args: any) => {
             args.cancel = true;
         });
-
-
     }
 }

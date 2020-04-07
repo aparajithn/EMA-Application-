@@ -16,6 +16,7 @@ export class SignUpComponent implements OnInit {
     evaluationId: string = "";
     password1: string = "";
     password2: string = "";
+    isBusy: boolean = false;
 
     constructor(private router: Router,
                 private postService: HttpPostService,
@@ -62,6 +63,7 @@ export class SignUpComponent implements OnInit {
             }).then(() => {})
         }
         else {
+            this.isBusy = true;
             // Send a request to the server to see if evaluation ID exists
             this.postService
                 .postData(
@@ -84,6 +86,7 @@ export class SignUpComponent implements OnInit {
         let result_str = "";
 
         if(!evalId_exists) {
+            this.isBusy = false;
             dialogs.alert({
                 title: "Unable to sign up",
                 message: "Evaluation ID does not exist.",
@@ -117,6 +120,7 @@ export class SignUpComponent implements OnInit {
 
     async handleFirebaseResponse(is_success: boolean, id_in_use: boolean, class_scope: any): Promise<string> {
         let result_str = "";
+        this.isBusy = false;
 
         // if successful signup
         if(is_success) {

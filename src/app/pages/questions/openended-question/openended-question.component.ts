@@ -1,13 +1,12 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import { Slider } from "tns-core-modules/ui/slider";
 import { registerElement } from 'nativescript-angular/element-registry';
 import { CardView } from '@nstudio/nativescript-cardview';
-import {device} from "platform";
 import {QuestionComponentAC} from "~/app/pages/questions/question-component-ac";
-registerElement('CardView', () => CardView);
 import { TextField } from "tns-core-modules/ui/text-field";
 import {HttpPostService} from "~/app/services/http-post.service";
+import {Page} from "ui/page";
+registerElement('CardView', () => CardView);
 
 @Component({
     selector: "OpenEnded",
@@ -20,8 +19,12 @@ export class OpenEndedQuestionComponent extends QuestionComponentAC implements O
     input: string = "";
 
     constructor(private _router: Router,
-                private _postService: HttpPostService) {
+                private _postService: HttpPostService,
+                private page: Page) {
         super(_router, _postService);
+
+        // disable back swipe navigation for ios
+        this.page.enableSwipeBackNavigation = false;
     }
 
     ngOnInit(): void {
