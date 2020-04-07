@@ -1,7 +1,7 @@
 <GridLayout row="*">
     <DockLayout row="0">
         <StackLayout dock="top">
-            <Image src="~/images/EMA_Logo.png" stretch="aspectFit" width="300" class="logo"></Image>
+            <Image src="~/images/EMA_Logo.png" stretch="aspectFit" height="25%" class="logo"></Image>
             <StackLayout class="form">
                 <StackLayout android:class="android-input-field" ios:class="ios-input-field">
                     <TextField [(ngModel)]="this.evaluationId" id ="Evaluation ID" class="" hint="Evaluation ID" keyboardType="number" autocorrect="false" autocapitalizationType="none"></TextField>
@@ -16,7 +16,7 @@
                 <Label class="signup-routing-label" text="Already a user? Tap here to sign in!" (tap)="routeSignIn()"></Label>
             </StackLayout>
         </StackLayout>
-        <Image dock="bottom" src="~/images/PSU_Behrend_Logo_2.png" stretch="aspectFit" width="200" class="psu-logo"></Image>
+        <Image dock="bottom" src="~/images/PSU_Behrend_Logo_2.png" stretch="aspectFit" class="psu-logo" height="10%"></Image>
     </DockLayout>
     <ActivityIndicator rowSpan="1" [busy]="isBusy" color="#035599" width="100" height="100"></ActivityIndicator>
 </GridLayout>

@@ -16,7 +16,7 @@
 
 .prev-button
 {
-    width: 50%;
+    width: 65%;
     height: 50;
     horizontal-align: left;
     margin: 0 0 15 15;
@@ -24,7 +24,7 @@
 
 .next-button
 {
-    width: 50%;
+    width: 65%;
     height: 50;
     horizontal-align: right;
     margin: 0 15 15 0;
