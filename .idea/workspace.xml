@@ -3,15 +3,27 @@
   <component name="ChangeListManager">
     <list default="true" id="287f0a20-0e8d-4280-8ece-300c460008ae" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app-routing.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/questions/numeric-question/numeric-question.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/questions/numeric-question/numeric-question.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/questions/numeric-question/numeric-question.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/questions/numeric-question/numeric-question.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/pages/questions/question-component-ac.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/questions/question-component-ac.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/pages/questions/scaled-question/scaled-question.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/questions/scaled-question/scaled-question.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/pages/sign-in/sign-in.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/sign-in/sign-in.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/pages/sign-up/sign-up.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/sign-up/sign-up.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tests/home.test.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tests/sign-in.test.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tests/sign-up.test.ts" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+        <option value="TypeScript File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -23,7 +35,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="js.ns.project" value="true" />
     <property name="js.ns.project.flavor" value="Angular" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/nativescript-cardview-master/nativescript-cardview-master/demo-angular/src" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -37,7 +49,12 @@
     <property name="ts.external.directory.path" value="C:\EMA-Application\EMA-Application-\node_modules\typescript\lib" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\EMA-Application\EMA-Application-\src\tests\Unit Tests" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\EMA-Application\EMA-Application-\src\tests" />
+      <recent name="C:\EMA-Application\EMA-Application-\src\tests\Unit Tests" />
       <recent name="D:\Documents\Penn State\2019-2020\Fall 2019\SWENG 480\Project\EMA_App\EMA-Application-\src\app\pages\home" />
       <recent name="D:\Documents\Penn State\2019-2020\Fall 2019\SWENG 480\Project\EMA_App\EMA-Application-\src\app\pages\questions\numeric-question" />
     </key>
@@ -54,7 +71,52 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Mocha.Mocha Testing">
+  <component name="RunManager" selected="Karma.Test sign-in success">
+    <configuration name="Test home page display when survey available" type="JavaScriptTestRunnerKarma" temporary="true" nameIsGenerated="true">
+      <config-file value="$PROJECT_DIR$/karma.conf.js" />
+      <karma-package-dir value="$PROJECT_DIR$/node_modules/karma" />
+      <node-interpreter value="project" />
+      <envs />
+      <scope-kind value="SUITE" />
+      <test-names>
+        <test-name value="Test home page display when survey available" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="Test if responses are saved when next button is clicked .Response Recorded" type="JavaScriptTestRunnerKarma" temporary="true" nameIsGenerated="true">
+      <config-file value="$PROJECT_DIR$/karma.conf.js" />
+      <karma-package-dir value="$PROJECT_DIR$/node_modules/karma" />
+      <node-interpreter value="project" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-names>
+        <test-name value="Test if responses are saved when next button is clicked " />
+        <test-name value="Response Recorded" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="Test if responses are saved when next button is clicked " type="JavaScriptTestRunnerKarma" temporary="true" nameIsGenerated="true">
+      <config-file value="$PROJECT_DIR$/karma.conf.js" />
+      <karma-package-dir value="$PROJECT_DIR$/node_modules/karma" />
+      <node-interpreter value="project" />
+      <envs />
+      <scope-kind value="SUITE" />
+      <test-names>
+        <test-name value="Test if responses are saved when next button is clicked " />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="Test sign-in success" type="JavaScriptTestRunnerKarma" temporary="true" nameIsGenerated="true">
+      <config-file value="$PROJECT_DIR$/karma.conf.js" />
+      <karma-package-dir value="$PROJECT_DIR$/node_modules/karma" />
+      <node-interpreter value="project" />
+      <envs />
+      <scope-kind value="SUITE" />
+      <test-names>
+        <test-name value="Test sign-in success" />
+      </test-names>
+      <method v="2" />
+    </configuration>
     <configuration name="Angular Application" type="JavascriptDebugType" uri="http://localhost:4200">
       <method v="2" />
     </configuration>
@@ -83,9 +145,21 @@
     </configuration>
     <list>
       <item itemvalue="JavaScript Debug.Angular Application" />
+      <item itemvalue="Karma.Test if responses are saved when next button is clicked .Response Recorded" />
+      <item itemvalue="Karma.Test if responses are saved when next button is clicked " />
+      <item itemvalue="Karma.Test home page display when survey available" />
+      <item itemvalue="Karma.Test sign-in success" />
       <item itemvalue="Mocha.Mocha Testing" />
       <item itemvalue="npm.Angular CLI Server" />
     </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Karma.Test sign-in success" />
+        <item itemvalue="Karma.Test if responses are saved when next button is clicked " />
+        <item itemvalue="Karma.Test home page display when survey available" />
+        <item itemvalue="Karma.Test if responses are saved when next button is clicked .Response Recorded" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -110,6 +184,16 @@
       <workItem from="1578325276084" duration="2833000" />
       <workItem from="1581199778720" duration="5944000" />
       <workItem from="1581797148686" duration="12669000" />
+      <workItem from="1584316306822" duration="4266000" />
+      <workItem from="1585056440805" duration="7988000" />
+      <workItem from="1585269171909" duration="1574000" />
+      <workItem from="1585322666850" duration="342000" />
+      <workItem from="1585431296752" duration="751000" />
+      <workItem from="1585533333562" duration="604000" />
+      <workItem from="1585582796357" duration="57000" />
+      <workItem from="1586033180774" duration="2944000" />
+      <workItem from="1586118382325" duration="580000" />
+      <workItem from="1586270913229" duration="730000" />
     </task>
     <servers />
   </component>

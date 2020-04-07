@@ -149,7 +149,8 @@ export class SignUpComponent implements OnInit {
         return result_str;
     }
 
-    routeSignIn(): void {
+    routeSignIn(): string {
         this.router.navigate(["/sign-in"]);
+        return "Successfully Navigated"
     }
 }

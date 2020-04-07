@@ -79,15 +79,19 @@ export abstract class QuestionComponentAC {
     //          button in the code, so the logic for differentiating
     //          the two is handled here.
     //---------------------------------------------------------------
-    nextButtonTapped(): void {
+    nextButtonTapped(): string {
         // save response
         this.saveResponse();
         if(this.survey_helper.isLastQuestion()) {
             this.survey_helper.submitSurvey(this.postService);
+            return "next question";
         }
         else {
             // go to next question
             this.survey_helper.gotoNextQuestion();
+            console.log("Response Recorded");
+            return "next question";
+
         }
     }
 
@@ -100,10 +104,11 @@ export abstract class QuestionComponentAC {
     // NOTE: The previous button is disabled on the first survey
     //          question page.
     //---------------------------------------------------------------
-    previousButtonTapped(): void {
+    previousButtonTapped(): string {
         // save response
         this.saveResponse();
         // go to previous question
         this.survey_helper.gotoPreviousQuestion();
+        return "previous question";
     }
 }
