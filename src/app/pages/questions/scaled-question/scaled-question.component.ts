@@ -30,7 +30,9 @@ export class ScaledQuestionComponent extends QuestionComponentAC implements OnIn
         super(_router, _postService);
 
         // disable back swipe navigation for ios
-        this.page.enableSwipeBackNavigation = false;
+        if(page != null) {
+            this.page.enableSwipeBackNavigation = false;
+        }
     }
 
     ngOnInit(): void {

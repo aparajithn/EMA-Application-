@@ -29,7 +29,9 @@ export class HomeComponent implements OnInit {
         this.survey_helper = new SurveyHelper(this.router);
 
         // disable back swipe navigation for ios
-        this.page.enableSwipeBackNavigation = false;
+        if(page != null) {
+            this.page.enableSwipeBackNavigation = false;
+        }
     }
 
     ngOnInit(): void {

@@ -25,7 +25,9 @@ export class NumericQuestionComponent extends QuestionComponentAC implements OnI
         this.list_values = new Array<number>();
 
         // disable back swipe navigation for ios
-        this.page.enableSwipeBackNavigation = false;
+        if(page != null) {
+            this.page.enableSwipeBackNavigation = false;
+        }
     }
     ngOnInit(): void {
         super.init();
