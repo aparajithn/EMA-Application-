@@ -6,7 +6,12 @@ import { CardView } from '@nstudio/nativescript-cardview';
 import {device} from "platform";
 import {QuestionComponentAC} from "~/app/pages/questions/question-component-ac";
 import {HttpPostService} from "~/app/services/http-post.service";
+
+import {toNumbers} from "@angular/compiler-cli/src/diagnostics/typescript_version";
+import * as dialogs from "ui/dialogs";
+
 import {Page} from "ui/page";
+
 registerElement('CardView', () => CardView);
 
 @Component({
@@ -35,9 +40,12 @@ export class ScaledQuestionComponent extends QuestionComponentAC implements OnIn
         }
     }
 
-    saveResponse(): void {
+    saveResponse(): string {
         this.question.response = this.slider_value.toString();
         console.log("Response recorded: " + this.question.response);
+        let result_str = "Response Recorded";
+        return result_str;
+
     }
 
     onSliderValueChange(args) {
