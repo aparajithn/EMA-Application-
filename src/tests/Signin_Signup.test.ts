@@ -8,7 +8,7 @@ describe("Test navigating to sign-up success", function() {
 
     it("should navigate to sign-up page ", ()=> {
 
-        let signInComponent = new SignInComponent(router, null);
+        let signInComponent = new SignInComponent(router, null, null);
 
         const string = signInComponent.routeSignUp();
         expect(string).toBe("Successfully Navigated")

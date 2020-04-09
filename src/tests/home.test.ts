@@ -56,6 +56,7 @@ describe("Test home page display when server down as expected", function() {
 
 describe("Test home page display when server unreachable", function() {
     let router = jasmine.createSpyObj("Router", ["navigateByUrl"]);
+    //let page = jasmine.createSpyObj("Page", {enableSwipeBackNavigation: false});
     it("should return cannot communicate with server", function(done) {
         let homeComponent = new HomeComponent(router, null, null);
 
@@ -66,6 +67,7 @@ describe("Test home page display when server unreachable", function() {
             });
     });
 });
+
 
 describe("Test home page display when unexpected error", function() {
     let router = jasmine.createSpyObj("Router", ["navigateByUrl"]);

@@ -1,6 +1,7 @@
 import {HomeComponent} from "~/app/pages/home/home.component";
 import {QuestionComponentAC} from "~/app/pages/questions/question-component-ac";
 import {ScaledQuestionComponent} from "~/app/pages/questions/scaled-question/scaled-question.component";
+import {SurveyHelper} from "~/app/models/survey-helper";
 
 describe("Test ability to navigate to question page when receive question", function() {
     let router = jasmine.createSpyObj("Router", ["navigateByUrl", "navigate"]);
@@ -35,7 +36,7 @@ describe("Test next button navigate to next question when pressed", function() {
 
     it("should navigate to next question", ()=> {
 
-        let scaledQuestionComponent = new ScaledQuestionComponent(router,null)
+        let scaledQuestionComponent = new ScaledQuestionComponent(router,null, null)
         //let res: any = "test";
         let res: any =
             [
@@ -57,11 +58,11 @@ describe("Test next button navigate to next question when pressed", function() {
 
 describe("Test previous button navigate to previous question when pressed", function() {
 
-    let router = jasmine.createSpyObj("Router", ["navigate"]);
+    let router = jasmine.createSpyObj("Router", ["navigate", "navigateByUrl", "then"]);
 
     it("should navigate to previous question", ()=> {
 
-        let scaledQuestionComponent = new ScaledQuestionComponent(router,null)
+        let scaledQuestionComponent = new ScaledQuestionComponent(router,null, null)
         //let res: any = "test";
         let res: any =
             [
@@ -76,7 +77,8 @@ describe("Test previous button navigate to previous question when pressed", func
                 }
             ];
         scaledQuestionComponent.question = res;
-        const string = scaledQuestionComponent.previousButtonTapped()
+        scaledQuestionComponent.survey_helper = new SurveyHelper(router);
+        const string = scaledQuestionComponent.previousButtonTapped();
         expect(string).toBe("previous question")
     });
 });

@@ -4,7 +4,7 @@ import {ScaledQuestionComponent} from "~/app/pages/questions/scaled-question/sca
 describe("Test if responses are saved when next button is clicked ", function() {
     let router = jasmine.createSpyObj("Router", ["navigateByUrl", "navigate"]);
     it("Should return ", () => {
-        let scaledComponent = new ScaledQuestionComponent(router, null);
+        let scaledComponent = new ScaledQuestionComponent(router, null, null);
 
         //let res: any = "test";
         let res: any =
